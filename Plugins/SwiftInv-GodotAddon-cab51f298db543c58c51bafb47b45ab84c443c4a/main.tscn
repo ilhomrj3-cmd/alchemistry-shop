@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cogg8dx4bvmmr"]
+
+[ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://b8m3ro0v7uiwe" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="4_5vw27"]
+[ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="5_kek77"]
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("3_272bh")
+items = Array[ExtResource("2_7mycd")]([null, null, null, null])
+metadata/_custom_type_script = "uid://b8m3ro0v7uiwe"
+
+[node name="Main" type="Node2D"]
+
+[node name="InventoryContainer" type="GridContainer" parent="."]
+offset_right = 625.0
+offset_bottom = 407.0
+columns = 4
+script = ExtResource("1_lquwl")
+inventory = SubResource("Resource_lquwl")
+slot_scene = ExtResource("4_5vw27")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("4_5vw27")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("5_kek77")
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("4_5vw27")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("5_kek77")
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("4_5vw27")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("5_kek77")
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("4_5vw27")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("5_kek77")
+amount_label = NodePath("AmountLabel")

@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8isujo75yjmv"]
+
+[ext_resource type="Script" uid="uid://c7ym7ppviq0ce" path="res://All_sprite/Player/3D_player/dont_up_ray_cast_3d.gd" id="1_i2rkt"]
+[ext_resource type="Script" uid="uid://b0gkyijun206a" path="res://All_sprite/Player/3D_player/can_up_ray_cast_3d.gd" id="2_g6fpg"]
+
+[sub_resource type="GDScript" id="GDScript_8q8pn"]
+script/source = "
+extends CharacterBody3D
+@onready var label_2_2: Label = $Camera3D/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Label/Label2
+
+@export var speed: float = 20
+@export var mouse_sensitivity: float = 0.002
+
+var gravity = 100
+
+
+@onready var camera = $Camera3D
+
+var rotation_x = 0.0
+
+
+func _ready():
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		# Поворот тела (влево-вправо)
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		
+		# Поворот камеры (вверх-вниз)
+		rotation_x -= event.relative.y * mouse_sensitivity
+		rotation_x = clamp(rotation_x, deg_to_rad(-90), deg_to_rad(90))
+		camera.rotation.x = rotation_x
+
+
+
+func _physics_process(delta):
+	# Гравитация
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	# Направление движения
+	var input_dir = Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_back\")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+
+	move_and_slide()
+
+func player_up():
+	velocity.y = 20
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q8pn"]
+radius = 0.290801
+
+[node name="player_shop" type="CharacterBody3D"]
+safe_margin = 0.1
+script = SubResource("GDScript_8q8pn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00453, 0)
+shape = SubResource("CapsuleShape3D_8q8pn")
+
+[node name="dont_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0200811, -1.01232, 0, 0.622384, 0.0326623, 0, -0.464378, -0.308777)
+script = ExtResource("1_i2rkt")
+
+[node name="can_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, -0.010709, -0.98471, 0, 0.219432, -0.048057, -0.00972521, -0.873179, -0.305177)
+script = ExtResource("2_g6fpg")
+
+[node name="dont_up_RayCast3D2" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(-1, 5.44105e-08, 2.85545e-09, 0, 0.0200812, -1.01232, -8.74228e-08, -0.622384, -0.0326625, -0.00941044, -0.464378, 0.29282)
+script = ExtResource("1_i2rkt")
+
+[node name="can_up_RayCast3D2" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(-1, 1.92062e-08, 0, -4.27058e-09, -0.010732, -0.984705, -8.73184e-08, -0.219431, 0.0481601, -0.000314766, -0.873179, 0.287839)
+script = ExtResource("2_g6fpg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6351, -0.133579)
