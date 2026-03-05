@@ -1,7 +1,8 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://d2bvxleur8e4c"]
 
 [resource]
-bus/1/name = &"sound_effeckt"
+bus/0/volume_db = -0.00162125
+bus/1/name = &"sound_effect"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false

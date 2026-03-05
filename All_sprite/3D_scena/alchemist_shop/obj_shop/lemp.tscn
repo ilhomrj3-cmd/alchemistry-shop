@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://v6jfi4df6e4p" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/lemp.gd" id="1_hem45"]
 [ext_resource type="Texture2D" uid="uid://cb86j8uy4u2gc" path="res://All_sprite/3D_scena/alchemist_shop/Lamp_Image_3-Image_1.png" id="2_b051v"]
 [ext_resource type="Texture2D" uid="uid://bpwqk7j1g8kgs" path="res://All_sprite/3D_scena/alchemist_shop/Lamp_Image_2.png" id="3_hem45"]
-[ext_resource type="AudioStream" uid="uid://cma6eccba270g" path="res://Sound_effect & Music/Sound_effect/Shop_sound/Lamp_active/Горящая керосиновая лампа.mp3" id="4_b051v"]
+[ext_resource type="AudioStream" uid="uid://cma6eccba270g" path="res://Sound_effect_Music/Sound_effect/Shop_sound/Lamp_active/Горящая керосиновая лампа.mp3" id="4_b051v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btjxk"]
 resource_name = "lantern"
@@ -128,6 +128,5 @@ mesh = SubResource("PrismMesh_b051v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927917, 0)
 stream = ExtResource("4_b051v")
 autoplay = true
-bus = &"sound_effeckt"
 
 [connection signal="finished" from="fair_sound" to="." method="_on_fair_sound_finished"]

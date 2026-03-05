@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://c3fpbwph01vtp"]
+[gd_scene load_steps=12 format=4 uid="uid://c3fpbwph01vtp"]
 
+[ext_resource type="Script" uid="uid://dx0c8ybhd512x" path="res://Scena/shop_main/shafl/shalf.gd" id="1_78h74"]
 [ext_resource type="Texture2D" uid="uid://ch6ebqy01xjrt" path="res://All_sprite/3D_scena/alchemist_shop/shefl_f.png" id="1_vrt3j"]
 [ext_resource type="Texture2D" uid="uid://cjs628h1yv7fv" path="res://All_sprite/3D_scena/alchemist_shop/shefl_test_polygone (2).png" id="2_qgyyc"]
+[ext_resource type="Script" uid="uid://ogx8lf8ndlye" path="res://Scena/shop_main/shafl/static_shafl.gd" id="3_qgyyc"]
+[ext_resource type="AudioStream" uid="uid://dfbkaqq07v7hy" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/potion_down/Стакан ставят на деревянный стол или подобную поверхность 3.mp3" id="7_wg7sx"]
+[ext_resource type="AudioStream" uid="uid://c5cp7w2lswqh1" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/potion_down/Стеклянный бокал ставится на деревянный стол или подобную поверхность 4..mp3" id="9_b8j1r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5ws6"]
 resource_name = "Cube"
@@ -45,7 +49,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fnye7")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrt3j"]
+size = Vector3(1.75685, 1, 0.949707)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2fkpc"]
+random_pitch = 1.5
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("9_b8j1r")
+stream_1/stream = ExtResource("7_wg7sx")
+
 [node name="Shalf" type="Node3D"]
+script = ExtResource("1_78h74")
 
 [node name="shefl" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1391, 0)
@@ -54,3 +69,194 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1391, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.304, -10.9358)
 mesh = SubResource("ArrayMesh_r6jae")
 skeleton = NodePath("")
+
+[node name="Static_shafl" type="StaticBody3D" parent="shefl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1391, 0)
+script = ExtResource("3_qgyyc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shefl/Static_shafl"]
+transform = Transform3D(9.0854, 0, 0, 0, 30.1699, 0, 0, 0, 30.2072, -0.254459, 16.0055, 0.759604)
+shape = SubResource("BoxShape3D_vrt3j")
+
+[node name="position_mark" type="Node3D" parent="."]
+
+[node name="pos" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4259, 8.56009, 8.52485)
+
+[node name="pos2" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08198, 8.56009, 6.86883)
+
+[node name="pos3" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69537, 8.56009, 5.60301)
+
+[node name="pos4" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.53562, 8.56009, 4.12644)
+
+[node name="pos5" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72965, 8.56009, 2.75529)
+
+[node name="pos7" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7096, 8.56009, 1.50818)
+
+[node name="pos8" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.34249, 8.56009, 0.282379)
+
+[node name="pos9" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52093, 8.56009, -0.847132)
+
+[node name="pos10" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14048, 8.56009, -2.01048)
+
+[node name="pos11" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7015, 8.56009, -3.2424)
+
+[node name="pos12" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28732, 8.56009, -4.49856)
+
+[node name="pos13" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91529, 8.56009, -5.61577)
+
+[node name="pos14" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.56529, 8.56009, -6.83954)
+
+[node name="pos15" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54899, 8.56009, -8.21166)
+
+[node name="pos16" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25679, 8.56009, 8.52485)
+
+[node name="pos17" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22905, 8.56009, 7.19938)
+
+[node name="pos18" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67537, 8.56009, 5.60301)
+
+[node name="pos19" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59195, 8.56009, 4.12644)
+
+[node name="pos20" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52716, 8.56009, 2.75529)
+
+[node name="pos21" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.847051, 8.56009, 1.50818)
+
+[node name="pos22" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03932, 8.56009, 0.768291)
+
+[node name="pos23" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.360204, 8.56009, 0.282379)
+
+[node name="pos24" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02999, 8.56009, -0.847132)
+
+[node name="pos25" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40318, 8.56009, -2.01048)
+
+[node name="pos26" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.37248, 8.56009, -3.2424)
+
+[node name="pos27" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2195, 8.56009, -4.49856)
+
+[node name="pos28" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91218, 8.56009, -5.61577)
+
+[node name="pos29" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98657, 8.56009, -6.83954)
+
+[node name="pos30" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17217, 8.56009, -8.21166)
+
+[node name="pos31" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07736, 18.1485, 9.39575)
+
+[node name="pos32" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25566, 18.1485, 7.45118)
+
+[node name="pos33" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.963969, 18.1485, 5.60301)
+
+[node name="pos34" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59195, 18.1485, 4.12644)
+
+[node name="pos35" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16565, 18.1485, 2.75529)
+
+[node name="pos36" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02612, 18.1485, 1.50818)
+
+[node name="pos37" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6455, 18.1485, 1.50818)
+
+[node name="pos38" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13578, 18.1485, 0.282379)
+
+[node name="pos39" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91865, 18.1485, -0.847132)
+
+[node name="pos40" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59195, 18.1485, -2.01048)
+
+[node name="pos41" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16647, 18.1485, -3.2424)
+
+[node name="pos42" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59195, 18.1485, -4.49856)
+
+[node name="pos43" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82211, 18.1485, -5.61577)
+
+[node name="pos44" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1476, 18.1485, -6.83954)
+
+[node name="pos45" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20755, 18.1485, -8.21166)
+
+[node name="pos46" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08832, 18.1485, 9.01974)
+
+[node name="pos47" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08422, 18.1485, 7.19938)
+
+[node name="pos48" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40194, 18.1485, 5.60301)
+
+[node name="pos49" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08832, 18.1485, 4.12644)
+
+[node name="pos50" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83701, 18.1485, 2.75529)
+
+[node name="pos51" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25709, 18.1485, 3.34192)
+
+[node name="pos52" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08832, 18.1485, 1.50818)
+
+[node name="pos53" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9038, 18.1485, 0.282379)
+
+[node name="pos54" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08832, 18.1485, -0.847132)
+
+[node name="pos55" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88941, 18.1485, -2.01048)
+
+[node name="pos56" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82598, 18.1485, -3.2424)
+
+[node name="pos57" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32264, 18.1485, -4.49856)
+
+[node name="pos58" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94492, 18.1485, -5.61577)
+
+[node name="pos59" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.79699, 18.1485, -6.83954)
+
+[node name="pos60" type="Marker3D" parent="position_mark"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01731, 18.1485, -8.93475)
+
+[node name="potion_down" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.672, 0)
+stream = SubResource("AudioStreamRandomizer_2fkpc")

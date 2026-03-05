@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://dirt06bgboqj4"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_4lo21"]
+[ext_resource type="Script" uid="uid://b8m3ro0v7uiwe" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_2tqe2"]
+[ext_resource type="Texture2D" uid="uid://kn54cmowctob" path="res://All_sprite/item_sprite/poison/heath/poison.png" id="2_q2qsw"]
+
+[sub_resource type="Resource" id="Resource_q2qsw"]
+script = ExtResource("1_4lo21")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 0
+texture = ExtResource("2_q2qsw")
+amount = 2
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[resource]
+script = ExtResource("2_2tqe2")
+items = Array[ExtResource("1_4lo21")]([null, null, null, null, null, SubResource("Resource_q2qsw")])

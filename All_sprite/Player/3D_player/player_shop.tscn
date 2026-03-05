@@ -1,88 +1,722 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8isujo75yjmv"]
+[gd_scene load_steps=42 format=3 uid="uid://b8isujo75yjmv"]
 
 [ext_resource type="Script" uid="uid://c7ym7ppviq0ce" path="res://All_sprite/Player/3D_player/dont_up_ray_cast_3d.gd" id="1_i2rkt"]
 [ext_resource type="Script" uid="uid://b0gkyijun206a" path="res://All_sprite/Player/3D_player/can_up_ray_cast_3d.gd" id="2_g6fpg"]
+[ext_resource type="Script" uid="uid://b5k24vgxl4p3m" path="res://All_sprite/Player/3D_player/ray_cast_interaction.gd" id="3_g6fpg"]
+[ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="3_lcjs7"]
+[ext_resource type="Resource" uid="uid://v5q3nl12djlb" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
+[ext_resource type="Script" uid="uid://colqgj4duh437" path="res://All_sprite/Player/3D_player/craft_table.gd" id="4_vubhk"]
+[ext_resource type="Resource" uid="uid://dxnu6hfwe4obk" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
+[ext_resource type="Shader" uid="uid://dmcmiq2mrscui" path="res://Theme/Shader & material/fair_shader.gdshader" id="5_ernyj"]
+[ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="5_vubhk"]
+[ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="6_knbwg"]
+[ext_resource type="Texture2D" uid="uid://kvpf2qu7lp8" path="res://All_sprite/UI/Panel/craft_panel.png" id="6_lry7x"]
+[ext_resource type="Texture2D" uid="uid://befp0xayeers" path="res://All_sprite/UI/Panel/craft_panel_on.png" id="7_4hiy4"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="9_4g16s"]
+[ext_resource type="Resource" uid="uid://mwsblq43keii" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="11_27uv2"]
+[ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="11_wcw8u"]
+[ext_resource type="Theme" uid="uid://d2b4ktva3r6ae" path="res://Theme/all_theme/inv_theme.tres" id="14_1cal7"]
+[ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="14_oqbpd"]
+[ext_resource type="AudioStream" uid="uid://dc84vo2lg77y4" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/44bd5a55f3f18f1.mp3" id="14_xbbyu"]
+[ext_resource type="AudioStream" uid="uid://b0xqq1ffpftmb" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/9714a129c8b23ac.mp3" id="15_ffghv"]
+[ext_resource type="AudioStream" uid="uid://bslkja8qt3fof" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/fantasy_game_crafting_potion.mp3" id="16_p04ip"]
+[ext_resource type="AudioStream" uid="uid://c7g4mmdwk5aa2" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/cook_potion.mp3" id="20_7jw7n"]
+[ext_resource type="Texture2D" uid="uid://ll8v4lbiij5m" path="res://All_sprite/UI/cursor/pngwing.com.png" id="23_3agd2"]
+[ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="23_3rysf"]
+[ext_resource type="AudioStream" uid="uid://dchmbpxktfsej" path="res://Sound_effect_Music/music/shop_music/dfg.ogg" id="25_3agd2"]
+[ext_resource type="AudioStream" uid="uid://bl0krca2f1g3r" path="res://Sound_effect_Music/music/shop_music/Home-Base-Valheim-Music-_-Player-Base-Song-_-Valheim-OST.ogg" id="25_7jw7n"]
 
 [sub_resource type="GDScript" id="GDScript_8q8pn"]
-script/source = "
-extends CharacterBody3D
-@onready var label_2_2: Label = $Camera3D/CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/Label/Label2
+script/source = "extends CharacterBody3D
 
+@onready var player_main_inv: InventoryContainer = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer
+@onready var craft_visible: Control = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible
+@onready var craft_panel_visible: MarginContainer = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible
 @export var speed: float = 20
 @export var mouse_sensitivity: float = 0.002
-
+@onready var inv: Control = $Camera3D/CanvasPlayer/INV
 var gravity = 100
-
-
+var inv_act = false
 @onready var camera = $Camera3D
-
 var rotation_x = 0.0
-
+@export var INV : Inventory
 
 func _ready():
-
+	inv.visible = inv_act
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		# Поворот тела (влево-вправо)
+	if event is InputEventMouseMotion and inv_act == false:
 		rotate_y(-event.relative.x * mouse_sensitivity)
-		
-		# Поворот камеры (вверх-вниз)
 		rotation_x -= event.relative.y * mouse_sensitivity
 		rotation_x = clamp(rotation_x, deg_to_rad(-90), deg_to_rad(90))
 		camera.rotation.x = rotation_x
 
-
-
 func _physics_process(delta):
-	# Гравитация
+
+	
+	if GlScript.craft_act:
+		inv.visible = true
+		craft_visible.visible = true
+		craft_panel_visible.visible = true
+		inv_act = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		craft_visible.visible = false
+		craft_panel_visible.visible = false
+		
+	if Input.is_action_just_pressed(\"menu_inventory\"):
+		inv_act = !inv_act
+		GlScript.craft_act = false
+		if inv_act:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			inv.visible = true
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			inv.visible = false
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	# Направление движения
 	var input_dir = Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_back\")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction:
+	if direction and inv_act == false:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-	else:
+	elif inv_act == false:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 
 func player_up():
-	velocity.y = 20
+	velocity.y = 25
+
+func uptade_all_slot():
+	for take_slot in player_main_inv.get_children():
+		if take_slot.has_method(\"update_slot\"):
+			take_slot.update_slot()
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q8pn"]
-radius = 0.290801
+radius = 0.206
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ee2wx"]
+texture = ExtResource("6_lry7x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ggr8"]
+texture = ExtResource("7_4hiy4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1p7a"]
+shader = ExtResource("5_ernyj")
+shader_parameter/strength = 0.002
+shader_parameter/speed = 1.425
+shader_parameter/scale = 15.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xppp1"]
+streams_count = 3
+stream_0/stream = ExtResource("14_xbbyu")
+stream_1/stream = ExtResource("15_ffghv")
+stream_2/stream = ExtResource("16_p04ip")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf0gu"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_m5iy1"]
+script = ExtResource("9_4g16s")
+name = "Barry"
+description = "Nature’s candy. Sweet enough to forget the all problem."
+Id = 1
+texture = SubResource("CompressedTexture2D_qf0gu")
+amount = 1
+max_stack = 32
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3agd2"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_q821j"]
+script = ExtResource("9_4g16s")
+name = "Gob Slime"
+description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
+Id = 3
+texture = ExtResource("11_wcw8u")
+amount = 1
+max_stack = 32
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_5lgf6"]
+script = ExtResource("9_4g16s")
+name = "Gob Slime"
+description = ""
+Id = 3
+texture = ExtResource("11_wcw8u")
+amount = 77
+max_stack = 100
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lhqfs"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7jw7n"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_ukis6"]
+script = ExtResource("9_4g16s")
+name = "Barry"
+description = ""
+Id = 1
+texture = SubResource("CompressedTexture2D_7jw7n")
+amount = 218
+max_stack = 300
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_5r81o"]
+script = ExtResource("9_4g16s")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("23_3rysf")
+amount = 165
+max_stack = 200
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oqbpd"]
+playback_mode = 2
+streams_count = 2
+stream_0/stream = ExtResource("25_7jw7n")
+stream_1/stream = ExtResource("25_3agd2")
 
 [node name="player_shop" type="CharacterBody3D"]
-safe_margin = 0.1
+collision_priority = 4.0
+safe_margin = 0.5
 script = SubResource("GDScript_8q8pn")
+INV = ExtResource("4_3ivbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00453, 0)
+transform = Transform3D(10.2244, 0, 0, 0, 10.2244, 0, 0, 0, 10.2244, 0, -1.90377, 0.61609)
 shape = SubResource("CapsuleShape3D_8q8pn")
 
 [node name="dont_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 0.0200811, -1.01232, 0, 0.622384, 0.0326623, 0, -0.464378, -0.308777)
+transform = Transform3D(1, 0, 0, 0, -9.47292e-09, -0.991541, 0, 0.216715, -4.33416e-08, 0, -0.472463, -0.198251)
 script = ExtResource("1_i2rkt")
 
 [node name="can_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, -0.010709, -0.98471, 0, 0.219432, -0.048057, -0.00972521, -0.873179, -0.305177)
-script = ExtResource("2_g6fpg")
-
-[node name="dont_up_RayCast3D2" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(-1, 5.44105e-08, 2.85545e-09, 0, 0.0200812, -1.01232, -8.74228e-08, -0.622384, -0.0326625, -0.00941044, -0.464378, 0.29282)
-script = ExtResource("1_i2rkt")
-
-[node name="can_up_RayCast3D2" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(-1, 1.92062e-08, 0, -4.27058e-09, -0.010732, -0.984705, -8.73184e-08, -0.219431, 0.0481601, -0.000314766, -0.873179, 0.287839)
+transform = Transform3D(1, 0, 0, 0, -3.86718e-09, -1.01462, 0, 0.0884707, -4.43505e-08, 0, -0.730725, -0.198807)
 script = ExtResource("2_g6fpg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6351, -0.133579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5434, -1.3923)
+
+[node name="CanvasPlayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="INV" type="Control" parent="Camera3D/CanvasPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="InventoryInfo" parent="Camera3D/CanvasPlayer/INV" instance=ExtResource("14_oqbpd")]
+z_index = 105
+layout_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/CanvasPlayer/INV"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Craft_table" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 80
+script = ExtResource("4_vubhk")
+
+[node name="craft_panel_visible" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 112
+theme_override_constants/margin_right = 102
+theme_override_constants/margin_bottom = 2
+
+[node name="Panel" type="Panel" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("14_1cal7")
+
+[node name="Panel2" type="Panel" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_ee2wx")
+
+[node name="fair_shader" type="Panel" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ggr8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader"]
+layout_mode = 2
+offset_right = 622.0
+offset_bottom = 344.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 14
+
+[node name="ColorRect2" type="ColorRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer/MarginContainer"]
+z_index = 4
+material = SubResource("ShaderMaterial_v1p7a")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 69
+
+[node name="ColorRect3" type="ColorRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer/MarginContainer2"]
+z_index = 4
+material = SubResource("ShaderMaterial_v1p7a")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_right = 85
+theme_override_constants/margin_bottom = 66
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_panel_visible/fair_shader/HBoxContainer/VBoxContainer/MarginContainer3"]
+z_index = 4
+material = SubResource("ShaderMaterial_v1p7a")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="craft_visible" type="Control" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+z_index = 1
+layout_mode = 2
+mouse_filter = 1
+
+[node name="InventoryContainer" type="GridContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible"]
+modulate = Color(1, 1, 1, 0.768627)
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -97.0
+offset_right = 221.5
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+script = ExtResource("3_lcjs7")
+inventory = ExtResource("5_3ivbx")
+slot_scene = ExtResource("5_vubhk")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Creat_Button" type="Button" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible"]
+layout_mode = 2
+offset_top = 240.0
+offset_right = 155.0
+offset_bottom = 298.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 36
+text = "Создать
+"
+
+[node name="Craft_item_take" type="GridContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 100.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("3_lcjs7")
+inventory = ExtResource("11_27uv2")
+slot_scene = ExtResource("5_vubhk")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/Craft_item_take" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="cook_potion_SFX" type="AudioStreamPlayer2D" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+position = Vector2(444, 386)
+stream = SubResource("AudioStreamRandomizer_xppp1")
+volume_db = -10.0
+pitch_scale = 0.8
+bus = &"sound_effect"
+
+[node name="finish_cook" type="AudioStreamPlayer2D" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+stream = ExtResource("20_7jw7n")
+bus = &"sound_effect"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 103
+theme_override_constants/margin_bottom = 113
+
+[node name="Panel" type="Panel" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+z_index = -1
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("14_1cal7")
+
+[node name="InventoryContainer" type="GridContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+columns = 6
+script = ExtResource("3_lcjs7")
+inventory = ExtResource("4_3ivbx")
+slot_scene = ExtResource("5_vubhk")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_m5iy1")
+
+[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_3agd2")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_q821j")
+
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("23_3rysf")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_5lgf6")
+
+[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_lhqfs")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_ukis6")
+
+[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("11_wcw8u")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_5r81o")
+
+[node name="Slot6" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot7" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot8" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("11_wcw8u")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot9" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot10" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot11" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot12" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot13" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot14" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot15" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot16" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot17" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot18" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot19" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot20" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot21" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot22" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot23" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="RayCast_interaction" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(29.8922, 0, 0, 0, -0.180803, -12.7393, 0, 8.54591, -0.26952, 0, 0, -0.711368)
+script = ExtResource("3_g6fpg")
+
+[node name="Sprite_interaction" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.0279006, 0, 0, 0, 0.0279006, 0, 0, 0, 0.0279006, 0, 0, -0.892968)
+texture = ExtResource("23_3agd2")
+
+[node name="music_shop" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.83796, 0)
+stream = SubResource("AudioStreamRandomizer_oqbpd")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible/Creat_Button" to="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table" method="_on_creat_button_pressed"]

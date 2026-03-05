@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://ko6svhxmc0nc"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_6jkfk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[resource]
+script = ExtResource("1_6jkfk")
+name = "Barry"
+description = "Nature’s candy. Sweet enough to forget the all problem."
+Id = 1
+texture = SubResource("CompressedTexture2D_3rysf")
+amount = 1
+max_stack = 32
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

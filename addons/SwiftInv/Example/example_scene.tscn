@@ -1,0 +1,184 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccp02sr4bembp"]
+
+[ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="1_ri6sr"]
+[ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="2_t8xc0"]
+[ext_resource type="Resource" uid="uid://buejyyliwcxfy" path="res://addons/SwiftInv/Example/inventory1.tres" id="3_3q34i"]
+[ext_resource type="Texture2D" uid="uid://kn54cmowctob" path="res://All_sprite/item_sprite/poison/heath/poison.png" id="4_dst0o"]
+[ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="4_lofb8"]
+[ext_resource type="Resource" uid="uid://dirt06bgboqj4" path="res://addons/SwiftInv/Example/inventory2.tres" id="5_5mgm4"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="6_3warj"]
+[ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="8_dst0o"]
+
+[sub_resource type="Resource" id="Resource_q2qsw"]
+script = ExtResource("6_3warj")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 0
+texture = ExtResource("4_dst0o")
+amount = 2
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="InventoryContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 224.0
+offset_right = 484.0
+offset_bottom = 428.0
+columns = 3
+script = ExtResource("1_ri6sr")
+inventory = ExtResource("3_3q34i")
+slot_scene = ExtResource("2_t8xc0")
+
+[node name="Slot0" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot4" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot5" type="TextureRect" parent="InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="InventoryContainer2" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 229.0
+offset_right = 964.0
+offset_bottom = 433.0
+columns = 3
+script = ExtResource("1_ri6sr")
+inventory = ExtResource("5_5mgm4")
+slot_scene = ExtResource("2_t8xc0")
+
+[node name="Slot0" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot4" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot5" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_dst0o")
+stretch_mode = 3
+script = ExtResource("4_lofb8")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_q2qsw")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 192.0
+offset_right = 512.0
+offset_bottom = 224.0
+text = "Inventory 1 (Player)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 200.0
+offset_right = 992.0
+offset_bottom = 232.0
+text = "Inventory 2 (Chest)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryInfo" parent="." instance=ExtResource("8_dst0o")]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 656.0
+offset_top = 437.0
+offset_right = 756.0
+offset_bottom = 437.0

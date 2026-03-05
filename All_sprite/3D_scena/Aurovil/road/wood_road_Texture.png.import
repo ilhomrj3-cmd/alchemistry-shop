@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c1dkbwo457ckx"
+path.s3tc="res://.godot/imported/wood_road_Texture.png-93f227031fb7c2bbb842c2c94a6f4ecd.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "c43bc29f4342abdc9827afe5a9ff538e"
+}
+
+[deps]
+
+source_file="res://All_sprite/3D_scena/Aurovil/road/wood_road_Texture.png"
+dest_files=["res://.godot/imported/wood_road_Texture.png-93f227031fb7c2bbb842c2c94a6f4ecd.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

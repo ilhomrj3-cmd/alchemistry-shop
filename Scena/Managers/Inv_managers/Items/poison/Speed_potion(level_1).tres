@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://8cvcu26mvigu"]
+
+[ext_resource type="PackedScene" uid="uid://ckisj5yl4uvlw" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/speed_poison(Green)(1_level).tscn" id="1_7rglt"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_raotp"]
+[ext_resource type="Texture2D" uid="uid://vovk3hlvm5gm" path="res://All_sprite/item_sprite/poison/heath/poison_speed(level1).png" id="2_lgwtt"]
+
+[resource]
+script = ExtResource("1_raotp")
+name = "Speed potion(level_1)"
+description = "Увиличивает скорость бега на 25%"
+Id = 31
+texture = ExtResource("2_lgwtt")
+amount = 2
+max_stack = 24
+mesh_item = ExtResource("1_7rglt")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

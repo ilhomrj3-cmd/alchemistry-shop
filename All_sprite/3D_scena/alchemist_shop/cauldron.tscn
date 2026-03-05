@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://brrpan55ya82d"]
+[gd_scene load_steps=26 format=4 uid="uid://brrpan55ya82d"]
 
 [ext_resource type="Texture2D" uid="uid://cgmkdosdjhp7l" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_0.png" id="1_truut"]
+[ext_resource type="Script" uid="uid://dxqtl6sqluwbf" path="res://All_sprite/3D_scena/alchemist_shop/static_cauldron.gd" id="1_wfawm"]
 [ext_resource type="Texture2D" uid="uid://cm1cb8pu22yrv" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_1.png" id="2_wfawm"]
 [ext_resource type="Texture2D" uid="uid://cqnkflr8q2ma0" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_2.png" id="3_gdrqw"]
 [ext_resource type="Texture2D" uid="uid://lo7jnxpp47so" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_3.png" id="4_dhmmb"]
@@ -10,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bgbcvs5bi300d" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_8.png" id="8_rk3yx"]
 [ext_resource type="Texture2D" uid="uid://d27ut3tbgsd" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_7.png" id="9_hwqi6"]
 [ext_resource type="Texture2D" uid="uid://dfofdi7xjmfuc" path="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_9.png" id="10_b3v07"]
+[ext_resource type="Shader" uid="uid://cgb0kfrhec0pw" path="res://All_sprite/3D_scena/alchemist_shop/cauldron.gdshader" id="12_gdrqw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_truut"]
+size = Vector3(2.06995, 2.201, 2.47266)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0koo"]
 resource_name = "initialShadingGroup"
@@ -156,12 +161,27 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nf2nb")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhmmb"]
+render_priority = 0
+shader = ExtResource("12_gdrqw")
+shader_parameter/potion_color = Color(0.1, 0.5, 0.2, 1)
+shader_parameter/bubble_color = Color(0.4, 0.8, 0.3, 1)
+shader_parameter/swirl_speed = 2.0
+shader_parameter/bubble_intensity = 1.5
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_truut"]
 
 [node name="cauldron" type="Node3D"]
 
 [node name="chodron_low_obj_cleaner_materialmerger_gles" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.22045e-16, 1, 0, -1, 2.22045e-16, 0, 0, 0)
+transform = Transform3D(0.86, 0, 0, 0, -3.75918e-08, 0.86, 0, -0.86, -3.75918e-08, 0, 0, 0)
+
+[node name="Static_cauldron" type="StaticBody3D" parent="chodron_low_obj_cleaner_materialmerger_gles"]
+script = ExtResource("1_wfawm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chodron_low_obj_cleaner_materialmerger_gles/Static_cauldron"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0432739, -0.00945282, 0.736328)
+shape = SubResource("BoxShape3D_truut")
 
 [node name="Object_2" type="MeshInstance3D" parent="chodron_low_obj_cleaner_materialmerger_gles"]
 mesh = SubResource("ArrayMesh_wwsgp")
@@ -184,6 +204,7 @@ skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="chodron_low_obj_cleaner_materialmerger_gles"]
 transform = Transform3D(0.53314, 0, 0, 0, -0.001881, -0.532036, 0, 0.403641, -0.00247933, 0, 3.79356e-16, 1.70847)
+material_override = SubResource("ShaderMaterial_dhmmb")
 mesh = SubResource("PlaneMesh_truut")
 
 [node name="ligdt" type="Node3D" parent="."]

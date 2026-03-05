@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://dpag6yove8mpw"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_eyasn"]
+[ext_resource type="PackedScene" uid="uid://6q5n8a2c4vdr" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/mana_poison(Blue)(1_level).tscn" id="1_yjm00"]
+[ext_resource type="Texture2D" uid="uid://dk3wl4216jqy7" path="res://All_sprite/item_sprite/poison/heath/poison_mana(level1).png" id="2_tixjr"]
+
+[resource]
+script = ExtResource("1_eyasn")
+name = "Mana potino (level 1)"
+description = "Восстанавливает 5 ед манны в течениии 4 секунд"
+Id = 32
+texture = ExtResource("2_tixjr")
+amount = 2
+max_stack = 24
+mesh_item = ExtResource("1_yjm00")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

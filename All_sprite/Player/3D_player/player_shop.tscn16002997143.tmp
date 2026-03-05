@@ -1,0 +1,542 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8isujo75yjmv"]
+
+[ext_resource type="Script" uid="uid://c7ym7ppviq0ce" path="res://All_sprite/Player/3D_player/dont_up_ray_cast_3d.gd" id="1_i2rkt"]
+[ext_resource type="Script" uid="uid://b0gkyijun206a" path="res://All_sprite/Player/3D_player/can_up_ray_cast_3d.gd" id="2_g6fpg"]
+[ext_resource type="Script" uid="uid://b5k24vgxl4p3m" path="res://All_sprite/Player/3D_player/ray_cast_interaction.gd" id="3_g6fpg"]
+[ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="3_lcjs7"]
+[ext_resource type="Resource" uid="uid://c2l17voapgb54" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
+[ext_resource type="Script" uid="uid://colqgj4duh437" path="res://All_sprite/Player/3D_player/craft_table.gd" id="4_vubhk"]
+[ext_resource type="Resource" uid="uid://ctsnc4pkpv040" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
+[ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="5_vubhk"]
+[ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="6_knbwg"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="9_4g16s"]
+[ext_resource type="Texture2D" uid="uid://kn54cmowctob" path="res://All_sprite/item_sprite/poison/heath/poison.png" id="10_yjres"]
+
+[sub_resource type="GDScript" id="GDScript_8q8pn"]
+script/source = "extends CharacterBody3D
+
+@export var speed: float = 20
+@export var mouse_sensitivity: float = 0.002
+@onready var inv: Control = $Camera3D/CanvasPlayer/INV
+
+var gravity = 100
+var inv_act = false
+
+@onready var camera = $Camera3D
+
+var rotation_x = 0.0
+@export var INV : Inventory
+
+func _ready():
+	inv.visible = inv_act
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion and inv_act == false:
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		rotation_x -= event.relative.y * mouse_sensitivity
+		rotation_x = clamp(rotation_x, deg_to_rad(-90), deg_to_rad(90))
+		camera.rotation.x = rotation_x
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed(\"menu_inventory\"):
+		inv_act = !inv_act
+		if inv_act:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			inv.visible = true
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			inv.visible = false
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	var input_dir = Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_back\")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	if direction and inv_act == false:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	elif inv_act == false:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+
+	move_and_slide()
+
+func player_up():
+	velocity.y = 20
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q8pn"]
+radius = 0.290801
+
+[sub_resource type="Resource" id="Resource_qvy86"]
+script = ExtResource("9_4g16s")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 1
+texture = ExtResource("10_yjres")
+amount = 5
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_ebcph"]
+script = ExtResource("9_4g16s")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 1
+texture = ExtResource("10_yjres")
+amount = 5
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_eu76v"]
+script = ExtResource("9_4g16s")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 1
+texture = ExtResource("10_yjres")
+amount = 5
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_j6qk1"]
+script = ExtResource("9_4g16s")
+name = "heath poison"
+description = "Востонавливает 50 ед здаровья"
+Id = 1
+texture = ExtResource("10_yjres")
+amount = 5
+max_stack = 5
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[node name="player_shop" type="CharacterBody3D"]
+safe_margin = 0.1
+script = SubResource("GDScript_8q8pn")
+INV = ExtResource("4_3ivbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(10.2244, 0, 0, 0, 10.2244, 0, 0, 0, 10.2244, 0, -1.90377, 0.61609)
+shape = SubResource("CapsuleShape3D_8q8pn")
+
+[node name="dont_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, -9.47292e-09, -0.991541, 0, 0.216715, -4.33416e-08, 0, -0.577959, -0.292838)
+script = ExtResource("1_i2rkt")
+
+[node name="can_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, -3.86718e-09, -1.01462, 0, 0.0884707, -4.43505e-08, 0, -0.730725, -0.293394)
+script = ExtResource("2_g6fpg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5434, -2.42953)
+
+[node name="CanvasPlayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="INV" type="Control" parent="Camera3D/CanvasPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/CanvasPlayer/INV"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Craft_table" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_vubhk")
+
+[node name="InventoryContainer" type="GridContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+script = ExtResource("3_lcjs7")
+inventory = ExtResource("5_3ivbx")
+slot_scene = ExtResource("5_vubhk")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+item = SubResource("Resource_qvy86")
+
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("10_yjres")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+item = SubResource("Resource_ebcph")
+
+[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("10_yjres")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+item = SubResource("Resource_eu76v")
+
+[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Creat_Button" type="Button" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 36
+text = "Создать
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+
+[node name="InventoryContainer" type="GridContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+columns = 6
+script = ExtResource("3_lcjs7")
+inventory = ExtResource("4_3ivbx")
+slot_scene = ExtResource("5_vubhk")
+metadata/_custom_type_script = "uid://fn552lfqi4o0"
+
+[node name="Slot0" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot6" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+item = SubResource("Resource_j6qk1")
+
+[node name="Slot7" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot8" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("10_yjres")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot9" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("10_yjres")
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot10" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot11" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot12" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot13" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot14" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot15" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot16" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot17" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot18" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot19" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot20" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot21" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot22" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot23" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot24" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot25" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot26" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot27" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot28" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="Slot29" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("AmountLabel")
+
+[node name="RayCast_interaction" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -0.10081, -0.951084, 0, 4.76493, -0.0201217, 0, 0, -0.711368)
+script = ExtResource("3_g6fpg")
+
+[node name="Sprite_interaction" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.898145)
+
+[connection signal="pressed" from="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/Creat_Button" to="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table" method="_on_creat_button_pressed"]

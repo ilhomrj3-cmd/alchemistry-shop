@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://dpw3s2tprd6kh"]
+
+[ext_resource type="PackedScene" uid="uid://b4i65h5kurn1h" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/heath_poison(Red)(1_level).tscn" id="1_gsb0q"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_uruuq"]
+[ext_resource type="Texture2D" uid="uid://etf8vh54ij8" path="res://All_sprite/item_sprite/poison/heath/poison_heath(level1).png" id="2_42yeb"]
+
+[resource]
+script = ExtResource("1_uruuq")
+name = "Heath_potion (Level 1)"
+description = "Востонавливает 20 ед здаровья"
+Id = 30
+texture = ExtResource("2_42yeb")
+amount = 2
+max_stack = 24
+mesh_item = ExtResource("1_gsb0q")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

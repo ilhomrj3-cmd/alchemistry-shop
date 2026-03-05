@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4lpsr40qilxd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4j4c7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4j4c7"]
+emission_enabled = true
+emission = Color(0.979982, 0.750704, 0.119245, 1)
+emission_energy_multiplier = 2.21
+
+[sub_resource type="Animation" id="Animation_sckqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.43059, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.21]
+}
+
+[sub_resource type="Animation" id="Animation_4j4c7"]
+resource_name = "new_animation"
+length = 0.8
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [16.0, 4.235]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.21, 3.36]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67j5l"]
+_data = {
+&"RESET": SubResource("Animation_sckqy"),
+&"new_animation": SubResource("Animation_4j4c7")
+}
+
+[node name="fature" type="MeshInstance3D"]
+transform = Transform3D(9.92268, 0, 0, 0, 9.92268, 0, 0, 0, 9.92268, 0, 0, 0)
+mesh = SubResource("SphereMesh_4j4c7")
+surface_material_override/0 = SubResource("StandardMaterial3D_4j4c7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_67j5l")
+}
+autoplay = "new_animation"
+speed_scale = 0.5
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.0915801, 0, -0.042066, 0, 0.100779, 0, 0.042066, 0, 0.0915801, -0.0607632, 0, -0.414611)
+light_color = Color(1, 0.733333, 0.313726, 1)
+light_energy = 16.0
+light_specular = 0.1
+spot_range = 16.4346
+spot_angle = 30.1051

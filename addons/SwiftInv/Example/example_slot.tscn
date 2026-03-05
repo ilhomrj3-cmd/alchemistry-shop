@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2inajmo8ahsj"]
+
+[ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="1_iw5u5"]
+[ext_resource type="Texture2D" uid="uid://cwl7og0f7j3q7" path="res://All_sprite/UI/Panel/Item_panel.png" id="2_pa6vl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cnkhv"]
+texture = ExtResource("2_pa6vl")
+
+[sub_resource type="Theme" id="Theme_ylcfk"]
+Panel/styles/panel = SubResource("StyleBoxTexture_cnkhv")
+
+[node name="InventorySlot" type="TextureRect" node_paths=PackedStringArray("amount_label")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 3
+script = ExtResource("1_iw5u5")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="AmountLabel" type="Label" parent="MarginContainer"]
+z_index = 5
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.774455, 0.737861, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Background" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_ylcfk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b4i65h5kurn1h"]
+[gd_scene load_steps=11 format=4 uid="uid://b4i65h5kurn1h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1op1"]
 resource_name = "glass"
@@ -41,6 +41,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_inkgx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6q75l"]
+albedo_color = Color(1, 0.167767, 0.177425, 1)
+emission_enabled = true
+emission = Color(1, 0.168627, 0.176471, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llroa"]
 resource_name = "liquid10"
@@ -127,6 +133,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6bo8p")
 
 [node name="pasted__nurbsToPoly5" type="Node3D"]
+transform = Transform3D(0.228558, 0, 0, 0, 0.228558, 0, 0, 0, 0.228558, 0, 0, 0)
 
 [node name="polySurface45_glass_0" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3053, 0, 0)
@@ -135,6 +142,7 @@ skeleton = NodePath("")
 
 [node name="polySurface46_liquid10_0" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3053, 0, 0)
+material_override = SubResource("StandardMaterial3D_6q75l")
 mesh = SubResource("ArrayMesh_raqux")
 skeleton = NodePath("")
 

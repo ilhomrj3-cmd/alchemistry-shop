@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfbkaqq07v7hy"
+path="res://.godot/imported/Стакан ставят на деревянный стол или подобную поверхность 3.mp3-19d5d2a1f49910ce85ded2b81214ab53.mp3str"
+
+[deps]
+
+source_file="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/potion_down/Стакан ставят на деревянный стол или подобную поверхность 3.mp3"
+dest_files=["res://.godot/imported/Стакан ставят на деревянный стол или подобную поверхность 3.mp3-19d5d2a1f49910ce85ded2b81214ab53.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

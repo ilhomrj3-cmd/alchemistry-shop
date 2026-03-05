@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d2b4ktva3r6ae"]
+
+[ext_resource type="Texture2D" uid="uid://bodsr1li7ghqt" path="res://All_sprite/UI/Panel/Inv_panel.png" id="1_t25qk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxs7l"]
+texture = ExtResource("1_t25qk")
+texture_margin_left = 171.0
+texture_margin_top = 209.0
+texture_margin_right = 114.0
+texture_margin_bottom = 208.0
+expand_margin_left = 95.0
+expand_margin_top = 95.0
+expand_margin_right = 85.0
+expand_margin_bottom = 90.0
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_kxs7l")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://ckhl6lnlf5j6n"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_kfrow"]
+[ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="2_wt2lb"]
+
+[resource]
+script = ExtResource("1_kfrow")
+name = "Gob Slime"
+description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
+Id = 3
+texture = ExtResource("2_wt2lb")
+amount = 1
+max_stack = 32
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
