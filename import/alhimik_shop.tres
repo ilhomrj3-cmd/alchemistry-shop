@@ -1,0 +1,29 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dpuenhyckgo2w"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_astmu"]
+ground_color = Color(0.00445855, 0.0387648, 0.0724986, 1)
+
+[sub_resource type="Sky" id="Sky_ckbky"]
+sky_material = SubResource("PhysicalSkyMaterial_astmu")
+
+[resource]
+background_mode = 2
+background_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+background_energy_multiplier = 1.6
+sky = SubResource("Sky_ckbky")
+glow_enabled = true
+glow_levels/2 = 2.0
+glow_levels/3 = 2.0
+glow_levels/5 = 2.0
+glow_intensity = 1.22
+glow_strength = 0.8
+glow_bloom = 0.06
+glow_blend_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.003
+volumetric_fog_albedo = Color(1, 0.962273, 0.620453, 1)
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_sky_affect = 0.145
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.7

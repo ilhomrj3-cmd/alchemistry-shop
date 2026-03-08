@@ -57,7 +57,9 @@ func _process(delta: float) -> void:
 		cook_potion_sfx.play()
 	elif not has_items:
 		cook_potion_sfx.stop()
-
+	if GlScript.craft_act == false:
+		item_foget = true
+		foget_item_take_player()
 		
 func _on_creat_button_pressed() -> void:
 	var current_ingredients = []
@@ -117,3 +119,34 @@ func _on_creat_button_pressed() -> void:
 		slot_0.update_slot()
 	else:
 		print_debug("Не удалось сварить. Проверь ингредиенты!")
+
+func foget_item_take_player():
+	if not item_foget: return
+	
+
+	for i in range(inventory_container.items.size()):
+		var item_in_cauldron = inventory_container.items[i]
+		
+		if item_in_cauldron != null:
+			var success = false
+			
+
+			for p in range(player_item.items.size()):
+				if player_item.items[p] == null:
+
+					player_item.items[p] = item_in_cauldron
+					
+
+					inventory_container.items[i] = null
+					
+					print_debug("Предмет вернулся игроку в слот: ", p)
+					success = true
+					break
+			
+			if not success:
+				print_debug("У игрока нет места для возврата предмета: ", item_in_cauldron.name)
+		for slot in node_inventory_container.get_children():
+			if slot.has_method("update_slot"):
+				slot.update_slot()
+		slot_0.update_slot()
+	item_foget = false

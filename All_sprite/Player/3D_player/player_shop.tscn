@@ -4,16 +4,17 @@
 [ext_resource type="Script" uid="uid://b0gkyijun206a" path="res://All_sprite/Player/3D_player/can_up_ray_cast_3d.gd" id="2_g6fpg"]
 [ext_resource type="Script" uid="uid://b5k24vgxl4p3m" path="res://All_sprite/Player/3D_player/ray_cast_interaction.gd" id="3_g6fpg"]
 [ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="3_lcjs7"]
-[ext_resource type="Resource" uid="uid://v5q3nl12djlb" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
+[ext_resource type="Resource" uid="uid://rbatdxgg6m8m" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
+[ext_resource type="Script" uid="uid://bvvhrvnfb8qoe" path="res://All_sprite/Player/3D_player/camera_3d.gd" id="4_7jw7n"]
 [ext_resource type="Script" uid="uid://colqgj4duh437" path="res://All_sprite/Player/3D_player/craft_table.gd" id="4_vubhk"]
-[ext_resource type="Resource" uid="uid://dxnu6hfwe4obk" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
+[ext_resource type="Resource" uid="uid://bm4gxmxl8wmga" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
 [ext_resource type="Shader" uid="uid://dmcmiq2mrscui" path="res://Theme/Shader & material/fair_shader.gdshader" id="5_ernyj"]
 [ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="5_vubhk"]
 [ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="6_knbwg"]
 [ext_resource type="Texture2D" uid="uid://kvpf2qu7lp8" path="res://All_sprite/UI/Panel/craft_panel.png" id="6_lry7x"]
 [ext_resource type="Texture2D" uid="uid://befp0xayeers" path="res://All_sprite/UI/Panel/craft_panel_on.png" id="7_4hiy4"]
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="9_4g16s"]
-[ext_resource type="Resource" uid="uid://mwsblq43keii" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="11_27uv2"]
+[ext_resource type="Resource" uid="uid://b1iudaoexgsjq" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="11_27uv2"]
 [ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="11_wcw8u"]
 [ext_resource type="Theme" uid="uid://d2b4ktva3r6ae" path="res://Theme/all_theme/inv_theme.tres" id="14_1cal7"]
 [ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="14_oqbpd"]
@@ -45,13 +46,6 @@ func _ready():
 	inv.visible = inv_act
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func _unhandled_input(event):
-	if event is InputEventMouseMotion and inv_act == false:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		rotation_x -= event.relative.y * mouse_sensitivity
-		rotation_x = clamp(rotation_x, deg_to_rad(-90), deg_to_rad(90))
-		camera.rotation.x = rotation_x
 
 func _physics_process(delta):
 
@@ -120,21 +114,31 @@ stream_0/stream = ExtResource("14_xbbyu")
 stream_1/stream = ExtResource("15_ffghv")
 stream_2/stream = ExtResource("16_p04ip")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf0gu"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3agd2"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oqbpd"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
 [sub_resource type="Resource" id="Resource_m5iy1"]
 script = ExtResource("9_4g16s")
 name = "Barry"
-description = "Nature’s candy. Sweet enough to forget the all problem."
+description = ""
 Id = 1
-texture = SubResource("CompressedTexture2D_qf0gu")
-amount = 1
-max_stack = 32
+texture = SubResource("CompressedTexture2D_oqbpd")
+amount = 188
+max_stack = 300
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3agd2"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+[sub_resource type="Resource" id="Resource_ukis6"]
+script = ExtResource("9_4g16s")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("23_3rysf")
+amount = 99
+max_stack = 200
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="Resource" id="Resource_q821j"]
 script = ExtResource("9_4g16s")
@@ -146,40 +150,20 @@ amount = 1
 max_stack = 32
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="Resource" id="Resource_5lgf6"]
-script = ExtResource("9_4g16s")
-name = "Gob Slime"
-description = ""
-Id = 3
-texture = ExtResource("11_wcw8u")
-amount = 77
-max_stack = 100
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lhqfs"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7jw7n"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
-[sub_resource type="Resource" id="Resource_ukis6"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_5lgf6"]
 script = ExtResource("9_4g16s")
 name = "Barry"
-description = ""
+description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
-texture = SubResource("CompressedTexture2D_7jw7n")
-amount = 218
-max_stack = 300
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="Resource" id="Resource_5r81o"]
-script = ExtResource("9_4g16s")
-name = "Goblin Ear"
-description = "Smells like swamp and regret. Surprisingly filling."
-Id = 2
-texture = ExtResource("23_3rysf")
-amount = 165
-max_stack = 200
+texture = SubResource("CompressedTexture2D_3rysf")
+amount = 1
+max_stack = 32
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oqbpd"]
@@ -189,13 +173,14 @@ stream_0/stream = ExtResource("25_7jw7n")
 stream_1/stream = ExtResource("25_3agd2")
 
 [node name="player_shop" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.06952, 0)
 collision_priority = 4.0
 safe_margin = 0.5
 script = SubResource("GDScript_8q8pn")
 INV = ExtResource("4_3ivbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(10.2244, 0, 0, 0, 10.2244, 0, 0, 0, 10.2244, 0, -1.90377, 0.61609)
+transform = Transform3D(10.2244, 0, 0, 0, 10.2244, 0, 0, 0, 10.2244, 0, -7.11271, 0.61609)
 shape = SubResource("CapsuleShape3D_8q8pn")
 
 [node name="dont_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
@@ -203,11 +188,16 @@ transform = Transform3D(1, 0, 0, 0, -9.47292e-09, -0.991541, 0, 0.216715, -4.334
 script = ExtResource("1_i2rkt")
 
 [node name="can_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, -3.86718e-09, -1.01462, 0, 0.0884707, -4.43505e-08, 0, -0.730725, -0.198807)
+transform = Transform3D(3.13612, 0, 0, 0, -3.86718e-09, -2.85582, 0, 0.0884707, -1.24832e-07, 0, -0.816428, -0.198807)
 script = ExtResource("2_g6fpg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5434, -1.3923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74735, -1.3923)
+script = ExtResource("4_7jw7n")
+bob_freq = 1.0
+bob_amp = 0.5
+bob_side_amp = 0.5
+smooth_speed = 5.0
 
 [node name="CanvasPlayer" type="CanvasLayer" parent="Camera3D"]
 
@@ -486,18 +476,8 @@ stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_m5iy1")
 
 [node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-stretch_mode = 3
-script = ExtResource("6_knbwg")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
-
-[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -506,9 +486,9 @@ stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_q821j")
+item = SubResource("Resource_m5iy1")
 
-[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -517,20 +497,9 @@ stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_5lgf6")
-
-[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = SubResource("CompressedTexture2D_lhqfs")
-stretch_mode = 3
-script = ExtResource("6_knbwg")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
 item = SubResource("Resource_ukis6")
 
-[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -539,7 +508,25 @@ stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_5r81o")
+item = SubResource("Resource_q821j")
+
+[node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot5" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
 
 [node name="Slot6" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
@@ -563,7 +550,6 @@ amount_label = NodePath("MarginContainer/AmountLabel")
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("11_wcw8u")
 stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
@@ -573,10 +559,12 @@ amount_label = NodePath("MarginContainer/AmountLabel")
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+texture = SubResource("CompressedTexture2D_7jw7n")
 stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_5lgf6")
 
 [node name="Slot10" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
@@ -706,6 +694,7 @@ amount_label = NodePath("MarginContainer/AmountLabel")
 
 [node name="RayCast_interaction" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(29.8922, 0, 0, 0, -0.180803, -12.7393, 0, 8.54591, -0.26952, 0, 0, -0.711368)
+visible = false
 script = ExtResource("3_g6fpg")
 
 [node name="Sprite_interaction" type="Sprite3D" parent="Camera3D"]
@@ -713,7 +702,7 @@ transform = Transform3D(0.0279006, 0, 0, 0, 0.0279006, 0, 0, 0, 0.0279006, 0, 0,
 texture = ExtResource("23_3agd2")
 
 [node name="music_shop" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.83796, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62902, 0)
 stream = SubResource("AudioStreamRandomizer_oqbpd")
 volume_db = -25.0
 autoplay = true

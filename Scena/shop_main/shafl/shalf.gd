@@ -1,7 +1,7 @@
 extends Node3D
 @onready var potion_SFX = $potion_down
 var player_inv_check_poison = preload("res://Scena/Managers/Inv_managers/INV/Player_INV.tres")
-var shelf_inventory = preload("res://Scena/Managers/Inv_managers/INV/Shalf_inv.tres")
+var inventory_resource = preload("res://Scena/Managers/Inv_managers/INV/Shalf_inv.tres")
 @onready var spawn_points = [$position_mark/pos,$position_mark/pos2,$position_mark/pos3,$position_mark/pos4,
 $position_mark/pos5,$position_mark/pos7,$position_mark/pos8,$position_mark/pos9,
 $position_mark/pos10,$position_mark/pos11,$position_mark/pos12,$position_mark/pos13,$position_mark/pos14,
@@ -17,10 +17,10 @@ $position_mark/pos47, $position_mark/pos48, $position_mark/pos49, $position_mark
 $position_mark/pos51, $position_mark/pos52, $position_mark/pos53, $position_mark/pos54, 
 $position_mark/pos55, $position_mark/pos56, $position_mark/pos57, $position_mark/pos58, 
 $position_mark/pos59, $position_mark/pos60]
-var items = shelf_inventory.items
+@onready var interaction_marker = $NPS_Marker3D # Точка, куда встанет NPC
+
+var items = inventory_resource.items
 var items_player = player_inv_check_poison.items
-
-
 
 func transfer_potions_to_shelf():
 
@@ -40,6 +40,19 @@ func transfer_potions_to_shelf():
 					break
 			break
 	update_shelf_visuals()
+
+
+
+func _ready():
+	# Добавляем этот стеллаж в список доступных для NPC
+	GlScript.register_shelf(self)
+
+func is_empty() -> bool:
+	# Проверка, есть ли тут вообще товар
+	for item in inventory_resource.items:
+		if item != null:
+			return false
+	return true
 
 func update_shelf_visuals():
 	for marker in spawn_points:
