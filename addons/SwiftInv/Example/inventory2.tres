@@ -12,6 +12,7 @@ Id = 0
 texture = ExtResource("2_q2qsw")
 amount = 2
 max_stack = 5
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [resource]

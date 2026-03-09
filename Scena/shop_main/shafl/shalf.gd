@@ -17,10 +17,15 @@ $position_mark/pos47, $position_mark/pos48, $position_mark/pos49, $position_mark
 $position_mark/pos51, $position_mark/pos52, $position_mark/pos53, $position_mark/pos54, 
 $position_mark/pos55, $position_mark/pos56, $position_mark/pos57, $position_mark/pos58, 
 $position_mark/pos59, $position_mark/pos60]
+
 @onready var interaction_marker = $NPS_Marker3D # Точка, куда встанет NPC
 
-var items = inventory_resource.items
+var items = inventory_resource.items.duplicate()
 var items_player = player_inv_check_poison.items
+
+func _ready():
+	# Добавляем этот стеллаж в список доступных для NPC
+	GlScript.register_shelf(self)
 
 func transfer_potions_to_shelf():
 
@@ -43,13 +48,10 @@ func transfer_potions_to_shelf():
 
 
 
-func _ready():
-	# Добавляем этот стеллаж в список доступных для NPC
-	GlScript.register_shelf(self)
+
 
 func is_empty() -> bool:
-	# Проверка, есть ли тут вообще товар
-	for item in inventory_resource.items:
+	for item in items:
 		if item != null:
 			return false
 	return true

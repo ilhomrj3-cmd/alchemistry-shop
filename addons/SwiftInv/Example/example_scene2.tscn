@@ -17,6 +17,7 @@ Id = 0
 texture = ExtResource("6_gn87t")
 amount = 2
 max_stack = 5
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [node name="Control" type="Control"]

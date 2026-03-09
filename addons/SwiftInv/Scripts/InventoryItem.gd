@@ -22,3 +22,4 @@ class_name InventoryItem extends Resource
 @export var max_stack: int = 24
 ## If you creat 3D game, its 3D mesh your item [PacketScena]
 @export var mesh_item: PackedScene 
+@export var count: int

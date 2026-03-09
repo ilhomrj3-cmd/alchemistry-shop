@@ -13,4 +13,5 @@ texture = ExtResource("2_lgwtt")
 amount = 2
 max_stack = 24
 mesh_item = ExtResource("1_7rglt")
+count = 15
 metadata/_custom_type_script = "uid://bamt5q6hcra14"

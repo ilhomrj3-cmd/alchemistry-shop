@@ -13,4 +13,5 @@ Id = 1
 texture = SubResource("CompressedTexture2D_3rysf")
 amount = 1
 max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"

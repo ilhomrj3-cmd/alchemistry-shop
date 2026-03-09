@@ -8,30 +8,28 @@ extends Camera3D
 @export_group("Head Bobbing")
 @export var bob_freq: float = 2.0  # Частота синуса (как часто качается)
 @export var bob_amp: float = 0.08  # Амплитуда (как высоко качается)
-@export var bob_side_amp: float = 0.05 # Качание влево-вправо
+@export var bob_side_amp: float = 0.05
 
 @export_group("Movement Physics")
-@export var smooth_speed: float = 10.0 # Плавность движения камеры
+@export var smooth_speed: float = 10.0
 
 var time: float = 0.0
-@onready var player = get_parent() # Предполагаем, что камера — дочерний узел игрока
+@onready var player = get_parent() 
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	fov = default_fov
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and GlScript.inv_act == false:
 		player.rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		rotation.x = clamp(rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _process(delta):
-	# Зум (при нажатии правой кнопки мыши)
 	var target_fov = zoom_fov if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) else default_fov
 	fov = lerp(fov, target_fov, delta * 8.0)
 
-	# Рассчитываем покачивание
 	_handle_head_bob(delta)
 
 func _handle_head_bob(delta):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://biw0ah10unw1j"]
+[gd_scene load_steps=7 format=3 uid="uid://biw0ah10unw1j"]
 
 [ext_resource type="Script" uid="uid://ioyi4jybl1nh" path="res://Scena/shop_main/NPS/nps.gd" id="1_fnxxv"]
+[ext_resource type="Script" uid="uid://cyupmay6bp156" path="res://Scena/shop_main/NPS/npc_dont_up.gd" id="2_h051u"]
 [ext_resource type="Script" uid="uid://ngnxugoihjdi" path="res://Scena/shop_main/NPS/npc_interaction_ray_cast.gd" id="3_gmgbh"]
 [ext_resource type="Script" uid="uid://b1dkjy7jk4vvd" path="res://Scena/shop_main/NPS/can_up_ray_nps_cast_3d.gd" id="3_h051u"]
 
@@ -8,18 +9,23 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h7y5x"]
 
-[node name="NPS" type="CharacterBody3D"]
-collision_layer = 3
-collision_mask = 0
+[node name="NPS" type="CharacterBody3D" groups=["nps"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204802, 0)
+collision_layer = 0
+collision_mask = 16
+safe_margin = 0.015
 script = ExtResource("1_fnxxv")
-speed = 30
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976403, 0)
+transform = Transform3D(7.92287, 0, 0, 0, 7.92287, 0, 0, 0, 7.92287, 0, 7.83556, 0)
 shape = SubResource("CapsuleShape3D_h7y5x")
 
+[node name="npc_dont_up" type="RayCast3D" parent="CollisionShape3D"]
+transform = Transform3D(4.67232, 0, 0, 0, -4.28136e-08, -4.73166, 0, 0.97946, -2.06828e-07, 0, -0.133058, -0.107015)
+script = ExtResource("2_h051u")
+
 [node name="can_up_RayCast3D" type="RayCast3D" parent="CollisionShape3D"]
-transform = Transform3D(5.99214e-15, 1.30789e-08, 2.85582, 3.13612, -1.30789e-08, 0, 1.37084e-07, 0.299211, -1.24832e-07, -0.00156432, -0.857238, -0.484422)
+transform = Transform3D(5.99214e-15, 1.54171e-08, 2.85582, 3.13612, -1.54171e-08, 0, 1.37084e-07, 0.352702, -1.24832e-07, -0.00156432, -0.820203, -0.447672)
 script = ExtResource("3_h051u")
 
 [node name="npc_interaction_RayCast" type="RayCast3D" parent="CollisionShape3D"]
@@ -27,9 +33,13 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.4
 script = ExtResource("3_gmgbh")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_desired_distance = 2.0
+path_desired_distance = 3.0
+target_desired_distance = 3.0
 navigation_layers = 3
+radius = 1.0
+avoidance_layers = 7
+avoidance_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975085, 0)
+transform = Transform3D(7.92287, 0, 0, 0, 7.92287, 0, 0, 0, 7.92287, 0, 7.82511, 0)
 mesh = SubResource("CapsuleMesh_h7y5x")

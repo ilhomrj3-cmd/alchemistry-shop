@@ -1,20 +1,20 @@
-[gd_scene load_steps=42 format=3 uid="uid://b8isujo75yjmv"]
+[gd_scene load_steps=41 format=3 uid="uid://b8isujo75yjmv"]
 
 [ext_resource type="Script" uid="uid://c7ym7ppviq0ce" path="res://All_sprite/Player/3D_player/dont_up_ray_cast_3d.gd" id="1_i2rkt"]
 [ext_resource type="Script" uid="uid://b0gkyijun206a" path="res://All_sprite/Player/3D_player/can_up_ray_cast_3d.gd" id="2_g6fpg"]
 [ext_resource type="Script" uid="uid://b5k24vgxl4p3m" path="res://All_sprite/Player/3D_player/ray_cast_interaction.gd" id="3_g6fpg"]
 [ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="3_lcjs7"]
-[ext_resource type="Resource" uid="uid://rbatdxgg6m8m" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
+[ext_resource type="Resource" uid="uid://nqhv6uvwc1kj" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="4_3ivbx"]
 [ext_resource type="Script" uid="uid://bvvhrvnfb8qoe" path="res://All_sprite/Player/3D_player/camera_3d.gd" id="4_7jw7n"]
 [ext_resource type="Script" uid="uid://colqgj4duh437" path="res://All_sprite/Player/3D_player/craft_table.gd" id="4_vubhk"]
-[ext_resource type="Resource" uid="uid://bm4gxmxl8wmga" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
+[ext_resource type="Resource" uid="uid://bwshisik3sbxj" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="5_3ivbx"]
 [ext_resource type="Shader" uid="uid://dmcmiq2mrscui" path="res://Theme/Shader & material/fair_shader.gdshader" id="5_ernyj"]
 [ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="5_vubhk"]
 [ext_resource type="Script" uid="uid://qyxte55fctcd" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="6_knbwg"]
 [ext_resource type="Texture2D" uid="uid://kvpf2qu7lp8" path="res://All_sprite/UI/Panel/craft_panel.png" id="6_lry7x"]
 [ext_resource type="Texture2D" uid="uid://befp0xayeers" path="res://All_sprite/UI/Panel/craft_panel_on.png" id="7_4hiy4"]
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="9_4g16s"]
-[ext_resource type="Resource" uid="uid://b1iudaoexgsjq" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="11_27uv2"]
+[ext_resource type="Resource" uid="uid://d2kl0qbm4qeqk" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="11_27uv2"]
 [ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="11_wcw8u"]
 [ext_resource type="Theme" uid="uid://d2b4ktva3r6ae" path="res://Theme/all_theme/inv_theme.tres" id="14_1cal7"]
 [ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="14_oqbpd"]
@@ -24,11 +24,14 @@
 [ext_resource type="AudioStream" uid="uid://c7g4mmdwk5aa2" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/cook_potion.mp3" id="20_7jw7n"]
 [ext_resource type="Texture2D" uid="uid://ll8v4lbiij5m" path="res://All_sprite/UI/cursor/pngwing.com.png" id="23_3agd2"]
 [ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="23_3rysf"]
+[ext_resource type="PackedScene" uid="uid://b4i65h5kurn1h" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/heath_poison(Red)(1_level).tscn" id="23_xbbyu"]
+[ext_resource type="Texture2D" uid="uid://etf8vh54ij8" path="res://All_sprite/item_sprite/poison/heath/poison_heath(level1).png" id="24_ffghv"]
 [ext_resource type="AudioStream" uid="uid://dchmbpxktfsej" path="res://Sound_effect_Music/music/shop_music/dfg.ogg" id="25_3agd2"]
 [ext_resource type="AudioStream" uid="uid://bl0krca2f1g3r" path="res://Sound_effect_Music/music/shop_music/Home-Base-Valheim-Music-_-Player-Base-Song-_-Valheim-OST.ogg" id="25_7jw7n"]
 
 [sub_resource type="GDScript" id="GDScript_8q8pn"]
 script/source = "extends CharacterBody3D
+@onready var coin_lable: Label = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer/coin_lable
 
 @onready var player_main_inv: InventoryContainer = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer
 @onready var craft_visible: Control = $Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/Craft_table/craft_visible
@@ -37,33 +40,32 @@ script/source = "extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.002
 @onready var inv: Control = $Camera3D/CanvasPlayer/INV
 var gravity = 100
-var inv_act = false
 @onready var camera = $Camera3D
 var rotation_x = 0.0
 @export var INV : Inventory
 
 func _ready():
-	inv.visible = inv_act
+	inv.visible = GlScript.inv_act
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-
+	coin_lable.text = str(GlScript.player_coin)
 	
 	if GlScript.craft_act:
 		inv.visible = true
 		craft_visible.visible = true
 		craft_panel_visible.visible = true
-		inv_act = true
+		GlScript.inv_act = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		craft_visible.visible = false
 		craft_panel_visible.visible = false
 		
 	if Input.is_action_just_pressed(\"menu_inventory\"):
-		inv_act = !inv_act
+		GlScript.inv_act = !GlScript.inv_act
 		GlScript.craft_act = false
-		if inv_act:
+		if GlScript.inv_act:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			inv.visible = true
 		else:
@@ -75,10 +77,10 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_back\")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction and inv_act == false:
+	if direction and GlScript.inv_act == false:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-	elif inv_act == false:
+	elif GlScript.inv_act == false:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
@@ -114,20 +116,18 @@ stream_0/stream = ExtResource("14_xbbyu")
 stream_1/stream = ExtResource("15_ffghv")
 stream_2/stream = ExtResource("16_p04ip")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3agd2"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oqbpd"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
 [sub_resource type="Resource" id="Resource_m5iy1"]
 script = ExtResource("9_4g16s")
 name = "Barry"
-description = ""
+description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
-texture = SubResource("CompressedTexture2D_oqbpd")
-amount = 188
-max_stack = 300
+texture = SubResource("CompressedTexture2D_3rysf")
+amount = 100
+max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="Resource" id="Resource_ukis6"]
@@ -136,8 +136,9 @@ name = "Goblin Ear"
 description = "Smells like swamp and regret. Surprisingly filling."
 Id = 2
 texture = ExtResource("23_3rysf")
-amount = 99
-max_stack = 200
+amount = 100
+max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="Resource" id="Resource_q821j"]
@@ -146,24 +147,21 @@ name = "Gob Slime"
 description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
 Id = 3
 texture = ExtResource("11_wcw8u")
-amount = 1
+amount = 100
 max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7jw7n"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
-
-[sub_resource type="Resource" id="Resource_5lgf6"]
+[sub_resource type="Resource" id="Resource_p04ip"]
 script = ExtResource("9_4g16s")
-name = "Barry"
-description = "Nature’s candy. Sweet enough to forget the all problem."
-Id = 1
-texture = SubResource("CompressedTexture2D_3rysf")
-amount = 1
-max_stack = 32
+name = "Heath_potion (Level 1)"
+description = "Востонавливает 20 ед здаровья"
+Id = 30
+texture = ExtResource("24_ffghv")
+amount = 20
+max_stack = 24
+mesh_item = ExtResource("23_xbbyu")
+count = 10
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oqbpd"]
@@ -174,6 +172,8 @@ stream_1/stream = ExtResource("25_3agd2")
 
 [node name="player_shop" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.06952, 0)
+collision_layer = 3
+collision_mask = 3
 collision_priority = 4.0
 safe_margin = 0.5
 script = SubResource("GDScript_8q8pn")
@@ -225,6 +225,17 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="coin_lable" type="Label" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.858276, 0.802158, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
 
 [node name="MarginContainer2" type="MarginContainer" parent="Camera3D/CanvasPlayer/INV/HBoxContainer"]
 layout_mode = 2
@@ -472,23 +483,14 @@ metadata/_custom_type_script = "uid://fn552lfqi4o0"
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-stretch_mode = 3
-script = ExtResource("6_knbwg")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
-
-[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = SubResource("CompressedTexture2D_3agd2")
+texture = SubResource("CompressedTexture2D_3rysf")
 stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
 item = SubResource("Resource_m5iy1")
 
-[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+[node name="Slot1" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -499,7 +501,7 @@ drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
 item = SubResource("Resource_ukis6")
 
-[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+[node name="Slot2" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -509,6 +511,16 @@ script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
 item = SubResource("Resource_q821j")
+
+[node name="Slot3" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("6_knbwg")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_p04ip")
 
 [node name="Slot4" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1
@@ -559,12 +571,10 @@ amount_label = NodePath("MarginContainer/AmountLabel")
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_7jw7n")
 stretch_mode = 3
 script = ExtResource("6_knbwg")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_5lgf6")
 
 [node name="Slot10" type="TextureRect" parent="Camera3D/CanvasPlayer/INV/HBoxContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("5_vubhk")]
 texture_filter = 1

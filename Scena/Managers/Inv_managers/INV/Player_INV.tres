@@ -1,21 +1,24 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=11 format=3 uid="uid://dkswq8fuqymck"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=12 format=3 uid="uid://nqhv6uvwc1kj"]
 
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_5wmds"]
 [ext_resource type="Script" uid="uid://b8m3ro0v7uiwe" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_j6qk1"]
 [ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="2_m5iy1"]
+[ext_resource type="PackedScene" uid="uid://b4i65h5kurn1h" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/heath_poison(Red)(1_level).tscn" id="4_q821j"]
+[ext_resource type="Texture2D" uid="uid://etf8vh54ij8" path="res://All_sprite/item_sprite/poison/heath/poison_heath(level1).png" id="5_5lgf6"]
 [ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="9_1g3e3"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3agd2"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
 [sub_resource type="Resource" id="Resource_m5iy1"]
 script = ExtResource("1_5wmds")
 name = "Barry"
-description = ""
+description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
-texture = SubResource("CompressedTexture2D_3agd2")
-amount = 188
-max_stack = 300
+texture = SubResource("CompressedTexture2D_3rysf")
+amount = 100
+max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="Resource" id="Resource_ukis6"]
@@ -24,8 +27,9 @@ name = "Goblin Ear"
 description = "Smells like swamp and regret. Surprisingly filling."
 Id = 2
 texture = ExtResource("2_m5iy1")
-amount = 99
-max_stack = 200
+amount = 100
+max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="Resource" id="Resource_q821j"]
@@ -34,24 +38,24 @@ name = "Gob Slime"
 description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
 Id = 3
 texture = ExtResource("9_1g3e3")
-amount = 1
+amount = 100
 max_stack = 32
+count = 0
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7jw7n"]
-load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
-
-[sub_resource type="Resource" id="Resource_5lgf6"]
+[sub_resource type="Resource" id="Resource_p04ip"]
 script = ExtResource("1_5wmds")
-name = "Barry"
-description = "Nature’s candy. Sweet enough to forget the all problem."
-Id = 1
-texture = SubResource("CompressedTexture2D_7jw7n")
-amount = 1
-max_stack = 32
+name = "Heath_potion (Level 1)"
+description = "Востонавливает 20 ед здаровья"
+Id = 30
+texture = ExtResource("5_5lgf6")
+amount = 20
+max_stack = 24
+mesh_item = ExtResource("4_q821j")
+count = 10
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [resource]
 script = ExtResource("2_j6qk1")
-items = Array[ExtResource("1_5wmds")]([null, SubResource("Resource_m5iy1"), SubResource("Resource_ukis6"), SubResource("Resource_q821j"), null, null, null, null, null, SubResource("Resource_5lgf6"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_5wmds")]([SubResource("Resource_m5iy1"), SubResource("Resource_ukis6"), SubResource("Resource_q821j"), SubResource("Resource_p04ip"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://b8m3ro0v7uiwe"
