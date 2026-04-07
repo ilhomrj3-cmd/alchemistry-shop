@@ -1,4 +1,5 @@
 extends Camera3D
+@onready var player_shop: CharacterBody3D = $".."
 
 @export_group("Settings")
 @export var mouse_sensitivity: float = 0.1
@@ -21,7 +22,7 @@ func _ready():
 	fov = default_fov
 
 func _input(event):
-	if event is InputEventMouseMotion and GlScript.inv_act == false:
+	if event is InputEventMouseMotion and player_shop.dont_move_okey == false:
 		player.rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		rotation.x = clamp(rotation.x, deg_to_rad(-80), deg_to_rad(80))

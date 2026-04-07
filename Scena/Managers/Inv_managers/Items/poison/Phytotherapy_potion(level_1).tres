@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://e0ln0yok5uxw"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_6esir"]
+[ext_resource type="Texture2D" uid="uid://wumuqa8dc6bp" path="res://All_sprite/item_sprite/poison/phytotherapy/phytotherapy_p_pictures.png" id="1_7msb8"]
+[ext_resource type="Texture2D" uid="uid://c8xnfnsx4y7x4" path="res://All_sprite/item_sprite/poison/phytotherapy/Phytotherapy_potion(level1).png" id="2_dlqke"]
+[ext_resource type="PackedScene" uid="uid://cd6jslbept51n" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/Phytotherapy_(Purple)(1_level).tscn" id="2_hl84q"]
+
+[resource]
+script = ExtResource("1_6esir")
+name = "Phytotherapy_potion"
+description = ""
+Id = 104
+texture = ExtResource("2_dlqke")
+amount = 1
+max_stack = 24
+mesh_item = ExtResource("2_hl84q")
+market_price = 30
+price = 30
+player_price = 30
+book_pict_item = ExtResource("1_7msb8")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyfef8vko4cqh"
 path.s3tc="res://.godot/imported/Medieval Village_Floor.png-f3d1569f50ebc1d856206f21a8a0b7b6.s3tc.ctex"
+path.etc2="res://.godot/imported/Medieval Village_Floor.png-f3d1569f50ebc1d856206f21a8a0b7b6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://All_sprite/3D_scena/Aurovil/Medieval Village_Floor.png"
-dest_files=["res://.godot/imported/Medieval Village_Floor.png-f3d1569f50ebc1d856206f21a8a0b7b6.s3tc.ctex"]
+dest_files=["res://.godot/imported/Medieval Village_Floor.png-f3d1569f50ebc1d856206f21a8a0b7b6.s3tc.ctex", "res://.godot/imported/Medieval Village_Floor.png-f3d1569f50ebc1d856206f21a8a0b7b6.etc2.ctex"]
 
 [params]
 

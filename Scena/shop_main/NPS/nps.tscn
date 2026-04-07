@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://biw0ah10unw1j"]
+[gd_scene load_steps=6 format=3 uid="uid://biw0ah10unw1j"]
 
 [ext_resource type="Script" uid="uid://ioyi4jybl1nh" path="res://Scena/shop_main/NPS/nps.gd" id="1_fnxxv"]
 [ext_resource type="Script" uid="uid://cyupmay6bp156" path="res://Scena/shop_main/NPS/npc_dont_up.gd" id="2_h051u"]
@@ -7,12 +7,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h7y5x"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_h7y5x"]
-
 [node name="NPS" type="CharacterBody3D" groups=["nps"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.204802, 0)
-collision_layer = 0
-collision_mask = 16
+collision_layer = 16
+collision_mask = 4
 safe_margin = 0.015
 script = ExtResource("1_fnxxv")
 
@@ -39,7 +37,3 @@ navigation_layers = 3
 radius = 1.0
 avoidance_layers = 7
 avoidance_mask = 7
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(7.92287, 0, 0, 0, 7.92287, 0, 0, 0, 7.92287, 0, 7.82511, 0)
-mesh = SubResource("CapsuleMesh_h7y5x")

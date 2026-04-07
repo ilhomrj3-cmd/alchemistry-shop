@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d27ut3tbgsd"
 path.s3tc="res://.godot/imported/stylised_cauldron_of_strange_mixture_7.png-4fb495f89aba138d94d1fbf6067c341e.s3tc.ctex"
+path.etc2="res://.godot/imported/stylised_cauldron_of_strange_mixture_7.png-4fb495f89aba138d94d1fbf6067c341e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://All_sprite/3D_scena/alchemist_shop/stylised_cauldron_of_strange_mixture_7.png"
-dest_files=["res://.godot/imported/stylised_cauldron_of_strange_mixture_7.png-4fb495f89aba138d94d1fbf6067c341e.s3tc.ctex"]
+dest_files=["res://.godot/imported/stylised_cauldron_of_strange_mixture_7.png-4fb495f89aba138d94d1fbf6067c341e.s3tc.ctex", "res://.godot/imported/stylised_cauldron_of_strange_mixture_7.png-4fb495f89aba138d94d1fbf6067c341e.etc2.ctex"]
 
 [params]
 

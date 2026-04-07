@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgj6ryxwi6w70"
 path.s3tc="res://.godot/imported/fantasy_game_inn_fantasy_game_inn_Image_0.png-2c04f1c4fb9b7d23fdf63a6834928ffe.s3tc.ctex"
+path.etc2="res://.godot/imported/fantasy_game_inn_fantasy_game_inn_Image_0.png-2c04f1c4fb9b7d23fdf63a6834928ffe.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://All_sprite/3D_scena/fantasy_game_inn_fantasy_game_inn_Image_0.png"
-dest_files=["res://.godot/imported/fantasy_game_inn_fantasy_game_inn_Image_0.png-2c04f1c4fb9b7d23fdf63a6834928ffe.s3tc.ctex"]
+dest_files=["res://.godot/imported/fantasy_game_inn_fantasy_game_inn_Image_0.png-2c04f1c4fb9b7d23fdf63a6834928ffe.s3tc.ctex", "res://.godot/imported/fantasy_game_inn_fantasy_game_inn_Image_0.png-2c04f1c4fb9b7d23fdf63a6834928ffe.etc2.ctex"]
 
 [params]
 

@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=16 format=3 uid="uid://dl1t1s306gkos"]
+
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_3iaas"]
+[ext_resource type="Texture2D" uid="uid://cmul8bi2uj306" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_pict.png" id="1_wkvds"]
+[ext_resource type="Texture2D" uid="uid://cv78wc25ouiwd" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_1.png" id="3_664bb"]
+[ext_resource type="Texture2D" uid="uid://brbrpf4wh51mv" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_2.png" id="4_nthg7"]
+[ext_resource type="Texture2D" uid="uid://dws3vp8dj17q2" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_10.png" id="5_l4dl1"]
+[ext_resource type="Texture2D" uid="uid://da6xj83338wdx" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_11.png" id="6_0gu28"]
+[ext_resource type="Texture2D" uid="uid://c2cyld5345t4g" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_12.png" id="7_h8vp0"]
+[ext_resource type="Texture2D" uid="uid://dtcniptcq7mtb" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_3.png" id="8_sc7gc"]
+[ext_resource type="Texture2D" uid="uid://bm2fm4jrdulas" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_4.png" id="9_7kesm"]
+[ext_resource type="Texture2D" uid="uid://dhc7fj64ednt8" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_5.png" id="10_vct7y"]
+[ext_resource type="Texture2D" uid="uid://cotse84kvaidm" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_6.png" id="11_016oo"]
+[ext_resource type="Texture2D" uid="uid://2fdm5pnxuhmn" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_7.png" id="12_0v4kn"]
+[ext_resource type="Texture2D" uid="uid://dkjb07lsw31gq" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_8.png" id="13_kuud7"]
+[ext_resource type="Texture2D" uid="uid://q5e4x8emwj33" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_9.png" id="14_vf1y8"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_tnu58"]
+frames = 13
+speed_scale = 5.4
+frame_0/texture = ExtResource("3_664bb")
+frame_1/texture = ExtResource("4_nthg7")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_sc7gc")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("9_7kesm")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("10_vct7y")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("11_016oo")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("12_0v4kn")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("13_kuud7")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("14_vf1y8")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("14_vf1y8")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("5_l4dl1")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("6_0gu28")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("7_h8vp0")
+frame_12/duration = 1.0
+
+[resource]
+script = ExtResource("1_3iaas")
+name = "Oculaberry"
+description = "Even Sauron couldn’t beat it in a staring contest."
+Id = 4
+texture = SubResource("AnimatedTexture_tnu58")
+amount = 1
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("1_wkvds")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

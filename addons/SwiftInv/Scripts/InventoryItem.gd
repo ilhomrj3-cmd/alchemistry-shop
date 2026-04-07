@@ -21,5 +21,11 @@ class_name InventoryItem extends Resource
 ## Beware of wololo... (see [member name] for more details)
 @export var max_stack: int = 24
 ## If you creat 3D game, its 3D mesh your item [PacketScena]
-@export var mesh_item: PackedScene 
-@export var count: int
+@export var mesh_item: PackedScene
+## Просто информативное переменая
+@export var market_price: int
+## сама стоемость предмета, во всех скриптах будет братся именно это значения
+@export var price: int
+## стоимость который хочет видеть игрок, тоже по больше мере информативное переменая
+@export var player_price: int
+@export var book_pict_item: Texture2D = null

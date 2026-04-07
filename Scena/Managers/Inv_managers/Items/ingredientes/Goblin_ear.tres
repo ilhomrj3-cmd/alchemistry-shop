@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bg7gq2dfwg4r3"]
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://bg7gq2dfwg4r3"]
 
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_ajtpt"]
+[ext_resource type="Texture2D" uid="uid://47ttvckh1xuw" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear_pict.png" id="1_wrb2k"]
 [ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="2_61hta"]
 
 [resource]
@@ -11,5 +12,8 @@ Id = 2
 texture = ExtResource("2_61hta")
 amount = 2
 max_stack = 32
-count = 0
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("1_wrb2k")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"

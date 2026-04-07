@@ -11,7 +11,7 @@ func _ready() -> void:
 	directional_light_day.visible = GlScript.day
 	directional_light_night.visible = !GlScript.day
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("sun"):
 		GlScript.day = !GlScript.day

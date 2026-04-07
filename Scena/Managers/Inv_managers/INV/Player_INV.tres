@@ -1,61 +1,205 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=12 format=3 uid="uid://nqhv6uvwc1kj"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=35 format=3]
 
-[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_5wmds"]
-[ext_resource type="Script" uid="uid://b8m3ro0v7uiwe" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_j6qk1"]
-[ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="2_m5iy1"]
-[ext_resource type="PackedScene" uid="uid://b4i65h5kurn1h" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/poinsion/level_1_pois/heath_poison(Red)(1_level).tscn" id="4_q821j"]
-[ext_resource type="Texture2D" uid="uid://etf8vh54ij8" path="res://All_sprite/item_sprite/poison/heath/poison_heath(level1).png" id="5_5lgf6"]
-[ext_resource type="Texture2D" uid="uid://6ov6cytbspcg" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="9_1g3e3"]
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_5wmds"]
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_j6qk1"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Berry_pict.png" id="7_rlapg"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/gob_slime_pict.png" id="9_6ivtp"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/gob slime.png" id="10_ac8fo"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_pict.png" id="13_0pw2p"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_1.png" id="14_iphea"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_2.png" id="15_da880"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_10.png" id="16_p4adf"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_11.png" id="17_boffl"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_12.png" id="18_tg6bf"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_3.png" id="19_607uw"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_4.png" id="20_77wv5"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_5.png" id="21_pftaq"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear_pict.png" id="21_qqyyn"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_6.png" id="22_jep6x"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="22_kjrjn"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_7.png" id="23_thryq"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_8.png" id="24_4qmjs"]
+[ext_resource type="Texture2D" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_9.png" id="25_bq4ll"]
+
+[sub_resource type="Resource" id="Resource_1jgjk"]
+script = ExtResource("1_5wmds")
+name = "Gob Slime"
+description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
+Id = 3
+texture = ExtResource("10_ac8fo")
+amount = 12
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("9_6ivtp")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ebc3p"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_ojgt8"]
+script = ExtResource("1_5wmds")
+name = "Barry"
+description = "Nature’s candy. Sweet enough to forget the all problem."
+Id = 1
+texture = SubResource("CompressedTexture2D_ebc3p")
+amount = 68
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("7_rlapg")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_ebcph"]
+script = ExtResource("1_5wmds")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("22_kjrjn")
+amount = 178
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("21_qqyyn")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_yaeur"]
+script = ExtResource("1_5wmds")
+name = "Gob Slime"
+description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
+Id = 3
+texture = ExtResource("10_ac8fo")
+amount = 32
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("9_6ivtp")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rlapg"]
+load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
+
+[sub_resource type="Resource" id="Resource_rlapg"]
+script = ExtResource("1_5wmds")
+name = "Barry"
+description = "Nature’s candy. Sweet enough to forget the all problem."
+Id = 1
+texture = SubResource("CompressedTexture2D_rlapg")
+amount = 244
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("7_rlapg")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_kjrjn"]
+script = ExtResource("1_5wmds")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("22_kjrjn")
+amount = 183
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("21_qqyyn")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_kcfvl"]
+script = ExtResource("1_5wmds")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("22_kjrjn")
+amount = 278
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("21_qqyyn")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_tnu58"]
+frames = 13
+speed_scale = 5.4
+frame_0/texture = ExtResource("14_iphea")
+frame_1/texture = ExtResource("15_da880")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_607uw")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("20_77wv5")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("21_pftaq")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("22_jep6x")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("23_thryq")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("24_4qmjs")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("25_bq4ll")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("25_bq4ll")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("16_p4adf")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("17_boffl")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("18_tg6bf")
+frame_12/duration = 1.0
+
+[sub_resource type="Resource" id="Resource_6ivtp"]
+script = ExtResource("1_5wmds")
+name = "Oculaberry"
+description = "Even Sauron couldn’t beat it in a staring contest."
+Id = 4
+texture = SubResource("AnimatedTexture_tnu58")
+amount = 288
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("13_0pw2p")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_ac8fo"]
+script = ExtResource("1_5wmds")
+name = "Gob Slime"
+description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
+Id = 3
+texture = ExtResource("10_ac8fo")
+amount = 260
+max_stack = 32
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("9_6ivtp")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
-[sub_resource type="Resource" id="Resource_m5iy1"]
+[sub_resource type="Resource" id="Resource_db34l"]
 script = ExtResource("1_5wmds")
 name = "Barry"
 description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
 texture = SubResource("CompressedTexture2D_3rysf")
-amount = 100
+amount = 236
 max_stack = 32
-count = 0
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="Resource" id="Resource_ukis6"]
-script = ExtResource("1_5wmds")
-name = "Goblin Ear"
-description = "Smells like swamp and regret. Surprisingly filling."
-Id = 2
-texture = ExtResource("2_m5iy1")
-amount = 100
-max_stack = 32
-count = 0
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="Resource" id="Resource_q821j"]
-script = ExtResource("1_5wmds")
-name = "Gob Slime"
-description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
-Id = 3
-texture = ExtResource("9_1g3e3")
-amount = 100
-max_stack = 32
-count = 0
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="Resource" id="Resource_p04ip"]
-script = ExtResource("1_5wmds")
-name = "Heath_potion (Level 1)"
-description = "Востонавливает 20 ед здаровья"
-Id = 30
-texture = ExtResource("5_5lgf6")
-amount = 20
-max_stack = 24
-mesh_item = ExtResource("4_q821j")
-count = 10
+market_price = 0
+price = 0
+player_price = 0
+book_pict_item = ExtResource("7_rlapg")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [resource]
 script = ExtResource("2_j6qk1")
-items = Array[ExtResource("1_5wmds")]([SubResource("Resource_m5iy1"), SubResource("Resource_ukis6"), SubResource("Resource_q821j"), SubResource("Resource_p04ip"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_5wmds")]([null, null, null, SubResource("Resource_1jgjk"), SubResource("Resource_ojgt8"), SubResource("Resource_ebcph"), SubResource("Resource_yaeur"), SubResource("Resource_rlapg"), null, SubResource("Resource_kjrjn"), SubResource("Resource_kcfvl"), SubResource("Resource_6ivtp"), SubResource("Resource_ac8fo"), SubResource("Resource_db34l"), null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://b8m3ro0v7uiwe"

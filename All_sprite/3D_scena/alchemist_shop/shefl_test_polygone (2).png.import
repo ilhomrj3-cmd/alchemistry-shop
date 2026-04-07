@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjs628h1yv7fv"
 path.s3tc="res://.godot/imported/shefl_test_polygone (2).png-32f63b2227b3641cebdba4bb366e9b88.s3tc.ctex"
+path.etc2="res://.godot/imported/shefl_test_polygone (2).png-32f63b2227b3641cebdba4bb366e9b88.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://All_sprite/3D_scena/alchemist_shop/shefl_test_polygone (2).png"
-dest_files=["res://.godot/imported/shefl_test_polygone (2).png-32f63b2227b3641cebdba4bb366e9b88.s3tc.ctex"]
+dest_files=["res://.godot/imported/shefl_test_polygone (2).png-32f63b2227b3641cebdba4bb366e9b88.s3tc.ctex", "res://.godot/imported/shefl_test_polygone (2).png-32f63b2227b3641cebdba4bb366e9b88.etc2.ctex"]
 
 [params]
 

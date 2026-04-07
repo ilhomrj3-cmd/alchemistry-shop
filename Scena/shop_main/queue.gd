@@ -3,10 +3,12 @@ extends StaticBody3D
 @export var queue_markers: Array[Marker3D]
 @export var item_display_markers: Array[Marker3D]
 @export var cashier_inventory = preload("res://Scena/Managers/Inv_managers/INV/Cashier_inventory.tres")
-
+@onready var Lable_money: Label3D = $Label_money
+@onready var anim_money: AnimationPlayer = $anim_give_money
 var current_customers: Array[CharacterBody3D] = []
 
 func _ready():
+	Lable_money.visible = false
 	add_to_group("cashier")
 	if cashier_inventory:
 		cashier_inventory = cashier_inventory.duplicate()
@@ -23,7 +25,7 @@ func join_queue(npc) -> Vector3:
 		return queue_markers[index].global_position
 	return queue_markers.back().global_position
 
-func interaction():
+func interaction(player):
 	if current_customers.is_empty(): 
 		return
 	
@@ -51,10 +53,14 @@ func process_payment(npc):
 func collect_money():
 	var money_earned = 0
 	for i in range(cashier_inventory.items.size()):
-		if cashier_inventory.items[i] != null:
-			money_earned += cashier_inventory.items[i].count
+		var item = cashier_inventory.items[i]
+		if item != null:
+			
+			var final_price = GlScript.get_item_price(item.Id)
+			money_earned += final_price
 			cashier_inventory.items[i] = null
-	
+	Lable_money.text = str(money_earned)
+	anim_money.play("give_money")
 	GlScript.player_coin += money_earned
 	print_debug("Получено денег: ", money_earned)
 	

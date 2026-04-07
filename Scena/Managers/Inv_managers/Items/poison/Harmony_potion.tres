@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://b8b015m1m62ck"]
+
+[ext_resource type="Texture2D" uid="uid://cnodeubnndil6" path="res://All_sprite/item_sprite/poison/harmony/harmony_p_pictures.png" id="1_bjlw5"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_tu2fr"]
+[ext_resource type="PackedScene" uid="uid://dlx8013uupoi8" path="res://All_sprite/item_sprite/poison/harmony/Harmony_potion(grey).tscn" id="2_bvx8x"]
+[ext_resource type="Texture2D" uid="uid://cjq5w761fxdpr" path="res://All_sprite/item_sprite/poison/harmony/harmony_potion.png" id="2_hdnlf"]
+
+[resource]
+script = ExtResource("1_tu2fr")
+name = "Harmony_potion"
+description = "This potion restores balance, heals the weary, and eases the drinker into a dreamless sleep."
+Id = 105
+texture = ExtResource("2_hdnlf")
+amount = 1
+max_stack = 24
+mesh_item = ExtResource("2_bvx8x")
+market_price = 120
+price = 120
+player_price = 120
+book_pict_item = ExtResource("1_bjlw5")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

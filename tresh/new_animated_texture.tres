@@ -1,0 +1,43 @@
+[gd_resource type="AnimatedTexture" load_steps=13 format=3 uid="uid://db7i602piib41"]
+
+[ext_resource type="Texture2D" uid="uid://cv78wc25ouiwd" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_1.png" id="1_cbfu5"]
+[ext_resource type="Texture2D" uid="uid://brbrpf4wh51mv" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_2.png" id="2_kq6vw"]
+[ext_resource type="Texture2D" uid="uid://dws3vp8dj17q2" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_10.png" id="3_bj10n"]
+[ext_resource type="Texture2D" uid="uid://da6xj83338wdx" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_11.png" id="4_xoruh"]
+[ext_resource type="Texture2D" uid="uid://c2cyld5345t4g" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_12.png" id="5_j7it7"]
+[ext_resource type="Texture2D" uid="uid://dtcniptcq7mtb" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_3.png" id="6_bvhmv"]
+[ext_resource type="Texture2D" uid="uid://bm2fm4jrdulas" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_4.png" id="7_arxmd"]
+[ext_resource type="Texture2D" uid="uid://dhc7fj64ednt8" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_5.png" id="8_fvktw"]
+[ext_resource type="Texture2D" uid="uid://cotse84kvaidm" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_6.png" id="9_kxd7q"]
+[ext_resource type="Texture2D" uid="uid://2fdm5pnxuhmn" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_7.png" id="10_tfp54"]
+[ext_resource type="Texture2D" uid="uid://dkjb07lsw31gq" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_8.png" id="11_hiprf"]
+[ext_resource type="Texture2D" uid="uid://q5e4x8emwj33" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_9.png" id="12_71nl6"]
+
+[resource]
+frames = 13
+speed_scale = 5.4
+frame_0/texture = ExtResource("1_cbfu5")
+frame_1/texture = ExtResource("2_kq6vw")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_bvhmv")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("7_arxmd")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("8_fvktw")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("9_kxd7q")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("10_tfp54")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("11_hiprf")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("12_71nl6")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("12_71nl6")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("3_bj10n")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("4_xoruh")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("5_j7it7")
+frame_12/duration = 1.0

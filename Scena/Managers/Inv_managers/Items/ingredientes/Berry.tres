@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://ko6svhxmc0nc"]
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://ko6svhxmc0nc"]
 
+[ext_resource type="Texture2D" uid="uid://bneyvtf43axmj" path="res://All_sprite/item_sprite/ingredientes/Berry_pict.png" id="1_3q88j"]
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_6jkfk"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rysf"]
@@ -13,5 +14,8 @@ Id = 1
 texture = SubResource("CompressedTexture2D_3rysf")
 amount = 1
 max_stack = 32
-count = 0
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("1_3q88j")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"

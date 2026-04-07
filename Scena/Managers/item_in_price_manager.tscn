@@ -1,0 +1,163 @@
+[gd_scene load_steps=5 format=3 uid="uid://4uajesrvrrpt"]
+
+[ext_resource type="Script" uid="uid://027gybidtyi1" path="res://Scena/Managers/item_in_price_manager.gd" id="1_kqne5"]
+[ext_resource type="Resource" uid="uid://8cvcu26mvigu" path="res://Scena/Managers/Inv_managers/Items/poison/Speed_potion(level_1).tres" id="2_am83s"]
+[ext_resource type="Texture2D" uid="uid://csl52tb56efty" path="res://All_sprite/item_sprite/poison/heath/poison_heath(level1)_pict.png" id="2_yvh8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_am83s"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_color = Color(0, 0, 0, 1)
+
+[node name="item_in_price_manager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqne5")
+item_show = ExtResource("2_am83s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0295, 1)
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="name_item_Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0.800197, 0.213217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 26
+theme_override_font_sizes/font_size = 35
+text = "Heath_potion"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control_sprite_item" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control_sprite_item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 250
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control_sprite_item/MarginContainer"]
+custom_minimum_size = Vector2(400, 135)
+layout_mode = 2
+texture = ExtResource("2_yvh8l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control2_market_price" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control2_market_price"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 175
+
+[node name="market_price_Label" type="Label" parent="HBoxContainer/Control2_market_price/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.741176, 0.72549, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "44"
+horizontal_alignment = 1
+
+[node name="Control3_your_price" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control3_your_price"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 175
+
+[node name="your_price_Label" type="Label" parent="HBoxContainer/Control3_your_price/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.741176, 0.72549, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="Control4_entry_prine" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control4_entry_prine"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/Control4_entry_prine/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control4" type="Control" parent="HBoxContainer/Control4_entry_prine/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control4_entry_prine/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 175
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Control4_entry_prine/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/separator = SubResource("StyleBoxFlat_am83s")
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Control4_entry_prine/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.740435, 0.727274, 3.85046e-07, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 35
+alignment = 1
+virtual_keyboard_type = 2
+flat = true
+draw_control_chars = true
+select_all_on_focus = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Control4_entry_prine/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 30
+
+[connection signal="text_submitted" from="HBoxContainer/Control4_entry_prine/VBoxContainer/MarginContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

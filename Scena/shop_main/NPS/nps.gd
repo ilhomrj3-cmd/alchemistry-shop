@@ -3,7 +3,14 @@ extends CharacterBody3D
 @export var targets: Array[Node3D]
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var speed: int
+@export var sex: String
+var Male = preload("res://All_sprite/NPS/Female/Female_main.tscn")
+var Female = preload("res://All_sprite/NPS/male/Male_main.tscn")
+var anim_tree: AnimationTree
+
+
 var target_idx = 0
+var is_buying = false
 var up = false
 var leave_idx = -1
 enum State { GO_TO_SHOP, SEARCH_ITEM, GO_TO_CASHIER, AT_CASHIER, LEAVING, WAITING } # это состоянии нпс
@@ -11,11 +18,23 @@ var current_state = State.GO_TO_SHOP
 var target_shelf = null # к какому шкафу идти?
 var inventory = preload("res://Scena/Managers/Inv_managers/INV/Nps_Inv.tres")
 var nps_inventory = inventory.duplicate()
+
 func _ready():
-	_update_target()
-	print_debug("NPC spawns")
-	print_debug(global_position)
+	sex = "Male" if randf() > 0.5 else "Female"
+	var instance
+	if sex == "Male":
+		instance = Male.instantiate()
+	else:
+		instance = Female.instantiate()
+	add_child(instance)
+	anim_tree = instance.find_child("all_nps_anim", true, false)
+	
+	if anim_tree:
+		_update_target()
+
 func _physics_process(_delta):
+	if anim_tree == null:
+		return
 	if not is_on_floor():
 		velocity.y -= 80 * _delta
 
@@ -36,15 +55,19 @@ func _physics_process(_delta):
 		State.WAITING:
 			velocity.x = 0
 			velocity.z = 0
-
+		State.AT_CASHIER:
+			velocity.x = 0
+			velocity.z = 0
+	_update_animation_parameters()
 	move_and_slide()
+
 	
 	if velocity.length() > 0.1:
 		var target_v = Vector3(velocity.x, 0, velocity.z)
-		var target_dir = target_v.normalized()
-		
-		var target_basis = Basis.looking_at(target_dir, Vector3.UP)
-		global_basis = global_basis.slerp(target_basis, 0.1)
+		if target_v.length() > 0.001:
+			var target_dir = target_v.normalized()
+			var target_basis = Basis.looking_at(target_dir, Vector3.UP)
+			global_basis = global_basis.slerp(target_basis, 0.1)
 
 func _logic_go_to_shop():
 	if target_idx < targets.size():
@@ -110,12 +133,26 @@ func _decide_next_step():
 	else:
 		current_state = State.SEARCH_ITEM
 func _interact_with_shelf():
+	var playback = anim_tree["parameters/StateMachine/playback"]
+	if target_shelf:
+		var dir = (target_shelf.global_position - global_position)
+		dir.y = 0
+		dir = dir.normalized()
+		var target_basis = Basis.looking_at(dir, Vector3.UP)
+		global_basis = target_basis
+		
+	is_buying = true
+	playback.travel("buys")
+
 	current_state = State.WAITING
-	var wait_time = randf_range(3.0, 6.0)
+
+	var wait_time = randf_range(3.0, 4.0)
 	await get_tree().create_timer(wait_time).timeout
+
+	is_buying = false
 	
 	if randf() > 0.5: 
-		var wanted_count = randi_range(1, 4)
+		var wanted_count = randi_range(1, 8)
 		var shelf_items = target_shelf.items 
 		var shelf_size = shelf_items.size()
 		var taken_count = 0
@@ -125,20 +162,43 @@ func _interact_with_shelf():
 		var max_attempts = shelf_size * 2
 
 		while taken_count < wanted_count and attempts < max_attempts:
-			if shelf_items[current_idx] != null:
-				# Шанс 70%, что предмет ему понравится
-				if randf() > 0.3:
+			
+			var item = shelf_items[current_idx]
+			if item != null:
+				var is_good_price = true
+
+				if GlScript.get_item_price(item.Id) > item.market_price:
+					# pассчитываем "наглость" игрока (например, цена 150 при рынке 100 = 1.5)
+					var greed_factor = float(GlScript.get_item_price(item.Id)) / float(item.market_price)
+					
+					var buy_chance = remap(greed_factor, 1.0, 2.0, 0.7, 0.0)
+					buy_chance = clamp(buy_chance, 0.0, 0.7)
+					
+					if randf() > buy_chance:
+						is_good_price = false
+
+						wanted_count -= 1 
+						print_debug("NPC: Слишком дорого за ", item.name, "! Больше брать не буду.")
+
+				# Если цена устроила или ниже рыночного
+				if is_good_price:
 					for n in range(nps_inventory.items.size()):
 						if nps_inventory.items[n] == null:
-							nps_inventory.items[n] = shelf_items[current_idx]
+							nps_inventory.items[n] = item
 							shelf_items[current_idx] = null
 							taken_count += 1
 							break
+			if wanted_count <= 0:
+				break
 			current_idx = (current_idx + randi_range(1, 5)) % shelf_size
 			attempts += 1
 		
 		target_shelf.update_shelf_visuals()
-		print_debug("NPC закончил выбор. Взято предметов: ", taken_count)
+		if taken_count == 0 and wanted_count <= 0:
+			print_debug("Ухожу из этого дорогого магазина!")
+			current_state = State.LEAVING
+			return
+		print_debug("закончил выбор. Взято предметов: ", taken_count)
 
 	target_shelf = null
 	_decide_next_step()
@@ -152,16 +212,12 @@ func _logic_pay():
 	_move_to_target()
 	
 	if nav_agent.is_navigation_finished():
-		# Если мы первые в очереди
+		current_state = State.AT_CASHIER
 		if cashier.current_customers.find(self) == 0:
 			var has_items = nps_inventory.items.any(func(item): return item != null)
 			
 			if has_items:
 				cashier.process_payment(self)
-				# ПЕРЕКЛЮЧАЕМ СОСТОЯНИЕ, чтобы он перестал дергаться
-				current_state = State.WAITING 
-			else:
-				current_state = State.WAITING
 
 func update_queue_position():
 	_logic_pay()
@@ -179,3 +235,26 @@ func _logic_leave():
 				queue_free()
 	else:
 		queue_free()
+
+func _update_animation_parameters():
+	if is_buying:
+		return
+	var playback = anim_tree["parameters/StateMachine/playback"]
+	var current_node = playback.get_current_node()
+	
+	if current_node == "buys":
+		if playback.is_playing(): 
+			return
+	var is_moving = velocity.length() > 0.1
+	
+	# 2. Логика переключения
+	if is_moving:
+		playback.travel("walk_1")
+	else:
+		if current_state == State.AT_CASHIER:
+			playback.travel("idel_1")# ожидание у кассы
+		else:
+			playback.travel("idel_1")
+func _get_nps_state():
+	return current_state
+	

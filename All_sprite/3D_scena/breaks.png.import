@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dthh0k7nrtf3"
 path.s3tc="res://.godot/imported/breaks.png-8036c4bf86fadb355e5a081ed746ff8c.s3tc.ctex"
+path.etc2="res://.godot/imported/breaks.png-8036c4bf86fadb355e5a081ed746ff8c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://All_sprite/3D_scena/breaks.png"
-dest_files=["res://.godot/imported/breaks.png-8036c4bf86fadb355e5a081ed746ff8c.s3tc.ctex"]
+dest_files=["res://.godot/imported/breaks.png-8036c4bf86fadb355e5a081ed746ff8c.s3tc.ctex", "res://.godot/imported/breaks.png-8036c4bf86fadb355e5a081ed746ff8c.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfr0rr3v76672"
 path.s3tc="res://.godot/imported/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png-9bc0ee27cdd9e4effa9dc516ef71e396.s3tc.ctex"
+path.etc2="res://.godot/imported/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png-9bc0ee27cdd9e4effa9dc516ef71e396.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://All_sprite/3D_scena/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png"
-dest_files=["res://.godot/imported/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png-9bc0ee27cdd9e4effa9dc516ef71e396.s3tc.ctex"]
+dest_files=["res://.godot/imported/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png-9bc0ee27cdd9e4effa9dc516ef71e396.s3tc.ctex", "res://.godot/imported/fantasy_game_inn_bdc5f950-a8dc-4a33-b985-cab625aadf0a2.png-9bc0ee27cdd9e4effa9dc516ef71e396.etc2.ctex"]
 
 [params]
 

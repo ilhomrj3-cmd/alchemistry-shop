@@ -1,6 +1,14 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://d2b4ktva3r6ae"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d2b4ktva3r6ae"]
 
+[ext_resource type="Texture2D" uid="uid://cwqqu8m2jen5d" path="res://All_sprite/UI/Panel/image-no-bg-preview (carve.photos) (35).png" id="1_kxs7l"]
 [ext_resource type="Texture2D" uid="uid://bodsr1li7ghqt" path="res://All_sprite/UI/Panel/Inv_panel.png" id="1_t25qk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5adwx"]
+texture = ExtResource("1_kxs7l")
+expand_margin_left = 48.0
+expand_margin_top = 10.0
+expand_margin_right = 40.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxs7l"]
 texture = ExtResource("1_t25qk")
@@ -14,4 +22,5 @@ expand_margin_right = 85.0
 expand_margin_bottom = 90.0
 
 [resource]
+LineEdit/styles/normal = SubResource("StyleBoxTexture_5adwx")
 Panel/styles/panel = SubResource("StyleBoxTexture_kxs7l")

@@ -13,37 +13,23 @@ extends MarginContainer
 var item_foget = false
 var cauldron_visible = false
 var indx = 0
-var recipes = [
-	[
-		{"id": 1, "count": 2},
-		{"id": 2, "count": 1}
-	],
-	[
-		{"id": 3, "count": 2},
-		{"id": 2, "count": 2}
-	],
-	[
-		{"id": 2, "count": 2},
-		{"id": 3, "count": 1},
-	]
-]
 
-var cooked_recipes = [
-	"Health",
-	"Manna",
-	"SPEED"
-]
-var all_potion = {
-	"Health": preload("res://Scena/Managers/Inv_managers/Items/poison/Heath_potion(level_1).tres"),
-	"Manna": preload("res://Scena/Managers/Inv_managers/Items/poison/Manna_potion(1_level).tres"),
-	"SPEED": preload("res://Scena/Managers/Inv_managers/Items/poison/Speed_potion(level_1).tres")
-	
+var recipes_db = {
+	101: [{"id": 1, "count": 2}, {"id": 2, "count": 1}], # Health Potion
+	102: [{"id": 3, "count": 2}, {"id": 2, "count": 2}], # Mana Potion
+	103: [{"id": 2, "count": 2}, {"id": 3, "count": 1}], # Speed Potion
+	104: [{"id": 1, "count": 2}, {"id": 2, "count": 2}, {"id": 3, "count": 2}], # Phytotherapy
+	105: [{"id": 1, "count": 1}, {"id": 2, "count": 1}, {"id": 3, "count": 1}, {"id": 4, "count": 1}] # Harmony
 }
+
 
 var ingredientes = []
 var count_ingredientes = []
-
-func _process(delta: float) -> void:
+func _ready() -> void:
+	item_foget = true
+	foget_item_take_player()
+	_update_ui_slots()
+func _process(_delta: float) -> void:
 
 	var has_items = false
 	for item_check in inventory_container.items:
@@ -62,67 +48,71 @@ func _process(delta: float) -> void:
 		foget_item_take_player()
 		
 func _on_creat_button_pressed() -> void:
+	_update_ui_slots()
 	var current_ingredients = []
 	for i in inventory_container.items:
 		if i != null:
 			current_ingredients.append({"id": i.Id, "count": i.amount})
-	
-	var found_recipe_index = -1
-	
-	for r_index in range(recipes.size()):
-		var recipe = recipes[r_index]
-		if recipe.size() == current_ingredients.size():
-			var matches = 0
-			for i in range(recipe.size()):
-				if recipe[i]["id"] == current_ingredients[i]["id"] and current_ingredients[i]["count"] >= recipe[i]["count"]:
-					matches += 1
-			
-			if matches == recipe.size():
-				found_recipe_index = r_index
-				break
 
-	if found_recipe_index != -1:
-		var target_recipe = recipes[found_recipe_index]
+	
+	if current_ingredients.is_empty(): return
+
+	var found_potion_id = -1
+	
+	for potion_id in recipes_db.keys():
+		var recipe = recipes_db[potion_id]
 		
-		var recipe_step = 0
+		if recipe.size() != current_ingredients.size():
+			continue
+			
+		var is_match = true
+		for i in range(recipe.size()):
+			if current_ingredients[i]["id"] != recipe[i]["id"] or current_ingredients[i]["count"] < recipe[i]["count"]:
+				is_match = false
+				break
+		
+		if is_match:
+			found_potion_id = potion_id
+			break
+	if found_potion_id != -1:
+
+		var target_recipe = recipes_db[found_potion_id]
+		var ingredient_index = 0
 		for i in range(inventory_container.items.size()):
-			var item = inventory_container.items[i]
-			if item != null:
-
-				item.amount -= target_recipe[recipe_step]["count"]
-				
-				if item.amount <= 0:
+			if inventory_container.items[i] != null:
+				inventory_container.items[i].amount -= target_recipe[ingredient_index]["count"]
+				if inventory_container.items[i].amount <= 0:
 					inventory_container.items[i] = null
-				
-				recipe_step += 1
-				
-		print_debug("Зелье сварено: ", cooked_recipes[found_recipe_index])
-		finish_cook.play()
-		var potion_name = cooked_recipes[found_recipe_index]
-		var new_potion_res = all_potion[potion_name]
+				ingredient_index += 1
 
+		finish_cook.play()
+		_update_ui_slots()
+		var new_potion_res = GlScript.all_potions[found_potion_id]
 
 		if craft_item_take.items[0] == null:
 			var potion_instance = new_potion_res.duplicate()
 			potion_instance.amount = 2
 			craft_item_take.items[0] = potion_instance
+			_update_ui_slots()
 		else:
 			if craft_item_take.items[0].Id == new_potion_res.Id:
 				craft_item_take.items[0].amount += 2
+
+				_update_ui_slots()
 			else:
-				print_debug("Слот выдачи занят другим предметом!")
+				print_debug("Слот выдачи занят!")
 				return 
 
-		for slot in node_inventory_container.get_children():
-			if slot.has_method("update_slot"):
-				slot.update_slot()
-		slot_0.update_slot()
-	else:
-		print_debug("Не удалось сварить. Проверь ингредиенты!")
+func _update_ui_slots():
+	for slot in node_inventory_container.get_children():
+		if slot.has_method("update_slot"):
+			slot.update_slot()
+	for craft_slot in node_craft_item_take.get_children():
+		if craft_slot.has_method("update_slot"):
+			craft_slot.update_slot()
 
 func foget_item_take_player():
 	if not item_foget: return
-	
 
 	for i in range(inventory_container.items.size()):
 		var item_in_cauldron = inventory_container.items[i]
@@ -138,15 +128,13 @@ func foget_item_take_player():
 					
 
 					inventory_container.items[i] = null
-					
 					print_debug("Предмет вернулся игроку в слот: ", p)
 					success = true
+					item_foget = false
+					_update_ui_slots()
 					break
 			
 			if not success:
+				_update_ui_slots()
+				item_foget = false
 				print_debug("У игрока нет места для возврата предмета: ", item_in_cauldron.name)
-		for slot in node_inventory_container.get_children():
-			if slot.has_method("update_slot"):
-				slot.update_slot()
-		slot_0.update_slot()
-	item_foget = false

@@ -4,7 +4,7 @@ extends RayCast3D
 @onready var sprite_interaction: Sprite3D = $"../Sprite_interaction"
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_colliding():
 		var hitobj = get_collider()
 		if hitobj.has_method("interaction"):
@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		else:
 			sprite_interaction.visible = false
 		if hitobj.has_method("interaction") and Input.is_action_just_pressed("interaction"):
-			hitobj.interaction()
+			hitobj.interaction(player_shop)
 			player_shop.uptade_all_slot()
 	else:
 		sprite_interaction.visible = false
