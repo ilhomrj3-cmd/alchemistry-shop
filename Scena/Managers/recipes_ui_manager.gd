@@ -8,14 +8,16 @@ extends Control
 
 @onready var take_item: Control = $HBoxContainer/take_item
 
-@onready var first_item_sprite_2d: Sprite2D = $HBoxContainer/first_item/first_item_Sprite2D
-@onready var two_item_sprite_2d: Sprite2D = $HBoxContainer/two_item/two_item_Sprite2D
-@onready var thee_item_sprite_2d: Sprite2D = $HBoxContainer/thee_item/thee_item_Sprite2D
-@onready var four_item_sprite_2d: Sprite2D = $HBoxContainer/four_item/four_item_Sprite2D
-@onready var fifth_item_sprite_2d: Sprite2D = $HBoxContainer/fifth_item/fifth_item_Sprite2D
-@onready var sixth_item_sprite_2d: Sprite2D = $HBoxContainer/sixth_item/sixth_item_Sprite2D
-@onready var take_item_sprite_2d: Sprite2D = $HBoxContainer/take_item/take_item_Sprite2D
+@onready var first_item_sprite_2d: TextureRect = $HBoxContainer/first_item/first_item_Sprite2D
+@onready var two_item_sprite_2d: TextureRect = $HBoxContainer/two_item/two_item_Sprite2D
+@onready var thee_item_sprite_2d: TextureRect = $HBoxContainer/thee_item/thee_item_Sprite2D
+@onready var four_item_sprite_2d: TextureRect = $HBoxContainer/four_item/four_item_Sprite2D
+@onready var fifth_item_sprite_2d: TextureRect = $HBoxContainer/fifth_item/fifth_item_Sprite2D
+@onready var sixth_item_sprite_2d: TextureRect = $HBoxContainer/sixth_item/sixth_item_Sprite2D
 @onready var equals: Control = $HBoxContainer/Equals
+@onready var take_item_sprite_2d: TextureRect = $HBoxContainer/take_item/take_item_Sprite2D
+
+
 
 @export var count_item: int
 @export var first_item_res: Resource

@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var speed: int
 @export var sex: String
+@onready var animation_emogi_nps: AnimationPlayer = $Animation_emogi_nps
+
 var Male = preload("res://All_sprite/NPS/Female/Female_main.tscn")
 var Female = preload("res://All_sprite/NPS/male/Male_main.tscn")
 var anim_tree: AnimationTree
@@ -23,12 +25,12 @@ func _ready():
 	sex = "Male" if randf() > 0.5 else "Female"
 	var instance
 	if sex == "Male":
-		instance = Male.instantiate()
-	else:
 		instance = Female.instantiate()
+	else:
+		instance = Male.instantiate()
 	add_child(instance)
 	anim_tree = instance.find_child("all_nps_anim", true, false)
-	
+
 	if anim_tree:
 		_update_target()
 
@@ -37,7 +39,6 @@ func _physics_process(_delta):
 		return
 	if not is_on_floor():
 		velocity.y -= 80 * _delta
-
 	#ПРЫЖОК
 	if $CollisionShape3D/can_up_RayCast3D.is_colliding() and is_on_floor():
 		velocity.y = 20
@@ -166,18 +167,23 @@ func _interact_with_shelf():
 			var item = shelf_items[current_idx]
 			if item != null:
 				var is_good_price = true
-
+				if randf() >= 0.5:
+					animation_emogi_nps.play("hmm")
+				else:
+					animation_emogi_nps.play("hmm")
 				if GlScript.get_item_price(item.Id) > item.market_price:
 					# pассчитываем "наглость" игрока (например, цена 150 при рынке 100 = 1.5)
 					var greed_factor = float(GlScript.get_item_price(item.Id)) / float(item.market_price)
 					
-					var buy_chance = remap(greed_factor, 1.0, 2.0, 0.7, 0.0)
-					buy_chance = clamp(buy_chance, 0.0, 0.7)
+					var buy_chance = remap(greed_factor, 1.0, 2.0, 1, 0.1)
+					buy_chance = clamp(buy_chance, 0.0, 1)
 					
 					if randf() > buy_chance:
 						is_good_price = false
 
 						wanted_count -= 1 
+						animation_emogi_nps.play("shock")
+						
 						print_debug("NPC: Слишком дорого за ", item.name, "! Больше брать не буду.")
 
 				# Если цена устроила или ниже рыночного
@@ -196,6 +202,15 @@ func _interact_with_shelf():
 		target_shelf.update_shelf_visuals()
 		if taken_count == 0 and wanted_count <= 0:
 			print_debug("Ухожу из этого дорогого магазина!")
+			GlScript.player_shop.warning_panel._new_warning("prices are too high")
+			var ran = randf()
+			if ran <= 0.3:
+				animation_emogi_nps.play("angre")
+			elif ran > 0.3 and ran <= 0.6:
+				animation_emogi_nps.play("poker_face_2")
+			else:
+				animation_emogi_nps.play("poker_face")
+				
 			current_state = State.LEAVING
 			return
 		print_debug("закончил выбор. Взято предметов: ", taken_count)

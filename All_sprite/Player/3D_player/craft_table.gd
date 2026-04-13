@@ -1,5 +1,5 @@
 extends MarginContainer
-
+@onready var player_shop: CharacterBody3D = $"../../../../../../.."
 @onready var inventory_container = preload("res://Scena/Managers/Inv_managers/INV/Cauldron.tres")
 @onready var node_inventory_container: InventoryContainer = $craft_visible/InventoryContainer
 @onready var craft_item_take = preload("res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres")
@@ -54,28 +54,39 @@ func _on_creat_button_pressed() -> void:
 		if i != null:
 			current_ingredients.append({"id": i.Id, "count": i.amount})
 
-	
 	if current_ingredients.is_empty(): return
 
 	var found_potion_id = -1
 	
+	# ... (твой код поиска potion_id остается прежним) ...
 	for potion_id in recipes_db.keys():
 		var recipe = recipes_db[potion_id]
-		
-		if recipe.size() != current_ingredients.size():
-			continue
-			
+		if recipe.size() != current_ingredients.size(): continue
 		var is_match = true
 		for i in range(recipe.size()):
-			if current_ingredients[i]["id"] != recipe[i]["id"] or current_ingredients[i]["count"] < recipe[i]["count"]:
+			if current_ingredients[i]["id"] != recipe[i]["id"]:
 				is_match = false
 				break
-		
+			if current_ingredients[i]["count"] < recipe[i]["count"]:
+				player_shop.warning_panel._new_warning("incorrect_ingredient_order")
+				is_match = false
+				break
 		if is_match:
 			found_potion_id = potion_id
 			break
-	if found_potion_id != -1:
 
+	# --- КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ТУТ ---
+	if found_potion_id != -1:
+		var new_potion_res = GlScript.all_potions[found_potion_id]
+		
+		# 1. СНАЧАЛА ПРОВЕРЯЕМ СЛОТ ВЫДАЧИ
+		if craft_item_take.items[0] != null:
+			if craft_item_take.items[0].Id != new_potion_res.Id:
+				# Если в слоте лежит другое зелье — выходим СРАЗУ, не забирая ресурсы
+				player_shop.warning_panel._new_warning("output slot is full")
+				return 
+
+		# 2. ЕСЛИ МЕСТО ЕСТЬ, ТОЛЬКО ТОГДА УМЕНЬШАЕМ КОЛИЧЕСТВО ИНГРЕДИЕНТОВ
 		var target_recipe = recipes_db[found_potion_id]
 		var ingredient_index = 0
 		for i in range(inventory_container.items.size()):
@@ -85,24 +96,20 @@ func _on_creat_button_pressed() -> void:
 					inventory_container.items[i] = null
 				ingredient_index += 1
 
+		# 3. ВЫДАЕМ ПРЕДМЕТ
 		finish_cook.play()
-		_update_ui_slots()
-		var new_potion_res = GlScript.all_potions[found_potion_id]
-
 		if craft_item_take.items[0] == null:
 			var potion_instance = new_potion_res.duplicate()
 			potion_instance.amount = 2
 			craft_item_take.items[0] = potion_instance
-			_update_ui_slots()
 		else:
-			if craft_item_take.items[0].Id == new_potion_res.Id:
-				craft_item_take.items[0].amount += 2
-
-				_update_ui_slots()
-			else:
-				print_debug("Слот выдачи занят!")
-				return 
-
+			# Мы уже проверили ID выше, так что тут точно совпадает
+			craft_item_take.items[0].amount += 2
+		
+		_update_ui_slots()
+	else:
+		print_debug("НЕ правильный рецепт")
+		player_shop.warning_panel._new_warning("incorrect_ricipe")
 func _update_ui_slots():
 	for slot in node_inventory_container.get_children():
 		if slot.has_method("update_slot"):

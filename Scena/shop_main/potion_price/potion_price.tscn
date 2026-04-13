@@ -59,7 +59,7 @@ mesh = SubResource("ArrayMesh_t8mjk")
 skeleton = NodePath("")
 
 [node name="list_3D" parent="potion_price" instance=ExtResource("3_ik7gm")]
-transform = Transform3D(0.847, 0, 0, 0, 0.847, 0, 0, 0, 0.847, -0.142, 1.055, -0.026)
+transform = Transform3D(0.847, 0, 0, 0, -0.84682, -0.0174426, 0, 0.0174426, -0.84682, -0.142, 1.055, -0.026)
 
 [node name="price_baner_interaction" type="StaticBody3D" parent="potion_price"]
 script = ExtResource("4_ik7gm")

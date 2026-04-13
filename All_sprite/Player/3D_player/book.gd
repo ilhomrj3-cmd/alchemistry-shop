@@ -11,7 +11,7 @@ extends MarginContainer
 @onready var colum_8: Control = $HBoxContainer/MarginContainer2/VBoxContainer/Colum_8
 @onready var page_label: Label = $HBoxContainer/MarginContainer2/MarginContainer/page_Label
 
-@export var page: int
+@export var page: int = 1
 var dont_next = false
 func _ready() -> void:
 	update_pages()

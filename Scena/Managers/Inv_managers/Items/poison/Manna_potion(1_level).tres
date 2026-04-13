@@ -9,7 +9,7 @@
 script = ExtResource("1_eyasn")
 name = "Mana_potion"
 description = "Восстанавливает 5 ед манны в течениии 4 секунд"
-Id = 103
+Id = 102
 texture = ExtResource("2_tixjr")
 amount = 2
 max_stack = 24

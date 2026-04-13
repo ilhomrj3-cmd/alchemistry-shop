@@ -1,5 +1,6 @@
 extends Control
 
+@onready var player_shop: CharacterBody3D = $"../../../../../../.."
 @export var item_show: Resource
 @onready var line_edit: LineEdit = $HBoxContainer/Control4_entry_prine/VBoxContainer/MarginContainer/LineEdit
 @onready var texture_item: TextureRect = $HBoxContainer/Control_sprite_item/MarginContainer/TextureRect
@@ -25,6 +26,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 			item_show.price = new_price_modifier
 		line_edit.clear()
 	else:
+		player_shop.warning_panel._new_warning("сannot change price")
 		print_debug("Не взя менять цены пока покупатели выбирают товары")
 	
 	

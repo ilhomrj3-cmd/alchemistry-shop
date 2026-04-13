@@ -69,9 +69,14 @@ func collect_money():
 	# отпускаем покупателя
 	var npc = current_customers.pop_front()
 	if npc:
-		npc.current_state = npc.State.LEAVING
-		for customer in current_customers:
-			customer.current_state = customer.State.GO_TO_CASHIER
+		if npc.sex == "Female" and randf() >= 0.5:
+			npc.animation_emogi_nps.play("uwu")
+			npc.current_state = npc.State.LEAVING
+		else:
+			npc.animation_emogi_nps.play("joy")
+			npc.current_state = npc.State.LEAVING
+			for customer in current_customers:
+				customer.current_state = customer.State.GO_TO_CASHIER
 
 func update_cashier_visuals():
 	for marker in item_display_markers:

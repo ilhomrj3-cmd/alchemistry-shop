@@ -1,0 +1,333 @@
+[gd_scene load_steps=18 format=3 uid="uid://dx62diq3x4n2h"]
+
+[ext_resource type="Script" uid="uid://cb64v6xe8le3u" path="res://All_sprite/Player/3D_player/book.gd" id="2_scgfp"]
+[ext_resource type="Script" uid="uid://ca0ekqaucyq3r" path="res://All_sprite/Player/3D_player/colum_1.gd" id="3_s00ww"]
+[ext_resource type="PackedScene" uid="uid://d30g6ywixj4ta" path="res://Scena/Managers/recipes_ui_manager.tscn" id="4_mtk10"]
+[ext_resource type="Resource" uid="uid://ko6svhxmc0nc" path="res://Scena/Managers/Inv_managers/Items/ingredientes/Berry.tres" id="6_8h40e"]
+[ext_resource type="Texture2D" uid="uid://sedxincpvqxv" path="res://All_sprite/UI/Book/book(1).png" id="13_wmmka"]
+[ext_resource type="Texture2D" uid="uid://dcdie2l6fuji" path="res://All_sprite/UI/Book/book(1.5).png" id="14_g0xu7"]
+[ext_resource type="Texture2D" uid="uid://rbrr8b8pavm2" path="res://All_sprite/UI/Book/book(2).png" id="15_g1b3q"]
+[ext_resource type="Texture2D" uid="uid://0273ych3tnrg" path="res://All_sprite/UI/Book/book(3).png" id="16_jy7bc"]
+[ext_resource type="Texture2D" uid="uid://dt8pr3sw470bb" path="res://All_sprite/UI/Book/book(4).png" id="17_0j6wr"]
+[ext_resource type="Texture2D" uid="uid://cwc6k5myp7xs" path="res://All_sprite/UI/Book/book(5).png" id="18_ufwue"]
+[ext_resource type="Texture2D" uid="uid://dcs875eok8s22" path="res://All_sprite/UI/Button/slide.png" id="19_ki3xk"]
+[ext_resource type="Texture2D" uid="uid://eisqmdvn13ij" path="res://All_sprite/UI/Button/slide_presed.png" id="20_2boul"]
+[ext_resource type="AudioStream" uid="uid://baafnvp2m62c4" path="res://Sound_effect_Music/Sound_effect/Shop_sound/book/Звук перелистывания страницы книги Шелест бумаги.mp3" id="21_h75m4"]
+
+[sub_resource type="Animation" id="Animation_he0jq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_wmmka")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_a023s"]
+resource_name = "next_list"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_wmmka"), ExtResource("14_g0xu7"), ExtResource("15_g1b3q"), ExtResource("16_jy7bc"), ExtResource("17_0j6wr"), ExtResource("18_ufwue"), ExtResource("13_wmmka")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_page_two_now"
+}, {
+"args": [],
+"method": &"_page_one_now"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf6a3"]
+_data = {
+&"RESET": SubResource("Animation_he0jq"),
+&"next_list": SubResource("Animation_a023s")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_17d5l"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("21_h75m4")
+
+[node name="INV" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.69
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Book" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_scgfp")
+
+[node name="Animation_book" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book"]
+libraries = {
+&"": SubResource("AnimationLibrary_lf6a3")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MarginContainer/HBoxContainer/VBoxContainer/Book"]
+position = Vector2(279, 259)
+stream = SubResource("AudioStreamRandomizer_17d5l")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+mouse_filter = 2
+
+[node name="Button_down" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/Control"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("19_ki3xk")
+texture_pressed = ExtResource("20_2boul")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("13_wmmka")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Colum_1" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+first_item_res_chaild = ExtResource("6_8h40e")
+two_item_res_chaild = ExtResource("6_8h40e")
+tree_item_res_chaild = ExtResource("6_8h40e")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer/Colum_1" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+
+[node name="Colum_2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+first_item_res_chaild = ExtResource("6_8h40e")
+two_item_res_chaild = ExtResource("6_8h40e")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer/Colum_2" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+
+[node name="Colum_3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer/Colum_3" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Colum_4" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer2/VBoxContainer/Colum_4" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Colum_5" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+first_item_res_chaild = ExtResource("6_8h40e")
+two_item_res_chaild = ExtResource("6_8h40e")
+tree_item_res_chaild = ExtResource("6_8h40e")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer/Colum_5" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Colum_6" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+first_item_res_chaild = ExtResource("6_8h40e")
+two_item_res_chaild = ExtResource("6_8h40e")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer/Colum_6" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Colum_7" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer/Colum_7" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Colum_8" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_s00ww")
+
+[node name="Recipes_ui_manager" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer/MarginContainer/VBoxContainer/Colum_8" instance=ExtResource("4_mtk10")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+
+[node name="Button_forward" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("19_ki3xk")
+texture_pressed = ExtResource("20_2boul")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/Control/Button_down" to="MarginContainer/HBoxContainer/VBoxContainer/Book" method="_on_button_down_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Book/HBoxContainer2/Control2/Button_forward" to="MarginContainer/HBoxContainer/VBoxContainer/Book" method="_on_button_forward_pressed"]

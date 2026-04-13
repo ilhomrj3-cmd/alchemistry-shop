@@ -6,6 +6,7 @@ extends Node3D
 @onready var horney: AudioStreamPlayer3D = $aurovil/sfx/horney
 @onready var bird: AudioStreamPlayer3D = $aurovil/sfx/bird
 @onready var streed_light: Node3D = $fantasy_game_inn/light/streed_light
+@onready var reflection_probe: ReflectionProbe = $ReflectionProbe
 
 func _ready() -> void:
 	directional_light_day.visible = GlScript.day
@@ -16,6 +17,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("sun"):
 		GlScript.day = !GlScript.day
 		if GlScript.day:
+			reflection_probe.visible = true
 			trade.play()
 			sheep.play()
 			horney.play()
@@ -24,6 +26,7 @@ func _process(_delta: float) -> void:
 			directional_light_day.visible = GlScript.day
 			directional_light_night.visible = !GlScript.day
 		else:
+			reflection_probe.visible = false
 			directional_light_day.visible = GlScript.day
 			directional_light_night.visible = !GlScript.day
 			streed_light.visible = !GlScript.day

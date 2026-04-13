@@ -9,13 +9,13 @@
 script = ExtResource("1_raotp")
 name = "Speed_potion"
 description = "Увиличивает скорость бега на 25%"
-Id = 102
+Id = 103
 texture = ExtResource("2_lgwtt")
 amount = 2
 max_stack = 24
 mesh_item = ExtResource("1_7rglt")
 market_price = 15
-price = 0
+price = 15
 player_price = 15
 book_pict_item = ExtResource("1_xr1da")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"

@@ -24,6 +24,5 @@ func _ready() -> void:
 		
 		if random_npc is MeshInstance3D:
 			random_npc.visible = true
-			print("Появился персонаж: ", random_npc.name)
 		else:
 			children[0].visible = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d30g6ywixj4ta"]
+[gd_scene load_steps=4 format=3 uid="uid://d30g6ywixj4ta"]
 
 [ext_resource type="Script" uid="uid://c6n1ejn0qbhy3" path="res://Scena/Managers/recipes_ui_manager.gd" id="1_6arvf"]
+[ext_resource type="Texture2D" uid="uid://bneyvtf43axmj" path="res://All_sprite/item_sprite/ingredientes/Berry_pict.png" id="2_6arvf"]
 [ext_resource type="Texture2D" uid="uid://co8foijmjnvjd" path="res://All_sprite/UI/Book/page and our/Equals.png" id="3_6n4ax"]
 
 [node name="Recipes_ui_manager" type="Control"]
@@ -23,70 +24,162 @@ grow_vertical = 2
 
 [node name="first_item" type="Control" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="first_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/first_item"]
-scale = Vector2(0.2, 0.2)
+[node name="first_item_Sprite2D" type="TextureRect" parent="HBoxContainer/first_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6arvf")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="two_item" type="Control" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="two_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/two_item"]
-scale = Vector2(0.2, 0.2)
+[node name="two_item_Sprite2D" type="TextureRect" parent="HBoxContainer/two_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="thee_item" type="Control" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="thee_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/thee_item"]
-scale = Vector2(0.2, 0.2)
+[node name="thee_item_Sprite2D" type="TextureRect" parent="HBoxContainer/thee_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="four_item" type="Control" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="four_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/four_item"]
-scale = Vector2(0.2, 0.2)
+[node name="four_item_Sprite2D" type="TextureRect" parent="HBoxContainer/four_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="fifth_item" type="Control" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="fifth_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/fifth_item"]
-scale = Vector2(0.2, 0.2)
+[node name="fifth_item_Sprite2D" type="TextureRect" parent="HBoxContainer/fifth_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="sixth_item" type="Control" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="sixth_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/sixth_item"]
-scale = Vector2(0.2, 0.2)
+[node name="sixth_item_Sprite2D" type="TextureRect" parent="HBoxContainer/sixth_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Equals" type="Control" parent="HBoxContainer"]
-visible = false
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/Equals"]
-scale = Vector2(0.2, 0.2)
+[node name="Sprite2D" type="TextureRect" parent="HBoxContainer/Equals"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_6n4ax")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="take_item" type="Control" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_horizontal = 3
 
-[node name="take_item_Sprite2D" type="Sprite2D" parent="HBoxContainer/take_item"]
-scale = Vector2(0.2, 0.2)
+[node name="take_item_Sprite2D" type="TextureRect" parent="HBoxContainer/take_item"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5

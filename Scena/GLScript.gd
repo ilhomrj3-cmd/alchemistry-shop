@@ -1,5 +1,6 @@
 extends Node
 
+
 var craft_act = false
 var inv_act = false
 var craft_act_shader = false
@@ -8,11 +9,11 @@ var day = false
 var change_price = true
 var player_coin = 0
 var reputation = 10
-
+var player_shop: CharacterBody3D
 var all_ingredients = {
 	1: preload("res://Scena/Managers/Inv_managers/Items/ingredientes/Berry.tres"),
 	2: preload("res://Scena/Managers/Inv_managers/Items/ingredientes/Goblin_ear.tres"),
-	3: preload("res://Scena/Managers/Inv_managers/Items/ingredientes/god slime.tres"),
+	3: preload("res://Scena/Managers/Inv_managers/Items/ingredientes/god_slime.tres"),
 	4: preload("res://Scena/Managers/Inv_managers/Items/ingredientes/Oculaberry.tres")
 }
 
