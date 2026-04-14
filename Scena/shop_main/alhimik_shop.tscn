@@ -4740,7 +4740,7 @@ size = Vector3(569.786, 29.8707, 902.808)
 script = ExtResource("1_ckbky")
 
 [node name="player_shop" parent="." instance=ExtResource("6_qeci7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.7702, 22.7531, 53.6706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.72459, 22.7531, 31.4254)
 
 [node name="fantasy_game_inn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.127, 0)

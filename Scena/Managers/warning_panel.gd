@@ -8,7 +8,8 @@ var all_news = {
 	"incorrect_ricipe": "Recipe not found. Check your recipe book.",
 	"сannot change price": "Cannot change price while a customer is shopping.",
 	"prices are too high": "Prices are too high! Customer are leaving.",
-	"output slot is full": "Free up the slot to get your new item."
+	"output slot is full": "Free up the slot to get your new item.",
+	
 }
 func _ready() -> void:
 	margin_container.visible = false
