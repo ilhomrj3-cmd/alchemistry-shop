@@ -6465,8 +6465,9 @@ transform = Transform3D(0.137045, 0, 0, 0, 0.137045, 0, 0, 0, 0.137045, -7.96641
 shape = SubResource("BoxShape3D_ufrn0")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5094, 44.0607, 12.717)
-size = Vector3(219.164, 80.4077, 209.052)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.167, 44.0607, 12.717)
+blend_distance = 0.0
+size = Vector3(215.849, 80.4077, 209.052)
 interior = true
 enable_shadows = true
 

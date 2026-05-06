@@ -19,12 +19,12 @@
 [ext_resource type="Shader" uid="uid://dmcmiq2mrscui" path="res://Theme/Shader & material/fair_shader.gdshader" id="26_jmfpt"]
 [ext_resource type="Texture2D" uid="uid://dtcniptcq7mtb" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_3.png" id="27_jln3e"]
 [ext_resource type="Script" uid="uid://fn552lfqi4o0" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="27_lfxk8"]
-[ext_resource type="Resource" uid="uid://dmwov4liwofi6" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="28_44gth"]
+[ext_resource type="Resource" uid="uid://8l7hal8s5aiy" path="res://Scena/Managers/Inv_managers/INV/Cauldron.tres" id="28_44gth"]
 [ext_resource type="Texture2D" uid="uid://bm2fm4jrdulas" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_4.png" id="28_854uq"]
 [ext_resource type="Texture2D" uid="uid://dhc7fj64ednt8" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_5.png" id="29_1kj4g"]
 [ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="29_yu11e"]
 [ext_resource type="Texture2D" uid="uid://cotse84kvaidm" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_6.png" id="30_0b0hm"]
-[ext_resource type="Resource" uid="uid://cxcbxgrp1y0xv" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="30_43csl"]
+[ext_resource type="Resource" uid="uid://baix8w2wkmphl" path="res://Scena/Managers/Inv_managers/INV/Craft_item_take.tres" id="30_43csl"]
 [ext_resource type="Texture2D" uid="uid://2fdm5pnxuhmn" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_7.png" id="31_6ipp4"]
 [ext_resource type="AudioStream" uid="uid://dc84vo2lg77y4" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/44bd5a55f3f18f1.mp3" id="31_lcjsx"]
 [ext_resource type="Texture2D" uid="uid://dkjb07lsw31gq" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_8.png" id="32_dkwbg"]
@@ -33,7 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bslkja8qt3fof" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/fantasy_game_crafting_potion.mp3" id="33_wtuey"]
 [ext_resource type="AudioStream" uid="uid://c7g4mmdwk5aa2" path="res://Sound_effect_Music/Sound_effect/Shop_sound/potion_SFX/cook_potion.mp3" id="34_ad7pu"]
 [ext_resource type="Texture2D" uid="uid://cmul8bi2uj306" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_pict.png" id="34_h0od2"]
-[ext_resource type="Resource" uid="uid://di4oj62vecxce" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="35_u8nht"]
+[ext_resource type="Resource" uid="uid://ch3ievqhb32ui" path="res://Scena/Managers/Inv_managers/INV/Player_INV.tres" id="35_u8nht"]
 [ext_resource type="Texture2D" uid="uid://bneyvtf43axmj" path="res://All_sprite/item_sprite/ingredientes/Berry_pict.png" id="35_ub8oh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ee2wx"]
@@ -54,7 +54,7 @@ stream_0/stream = ExtResource("31_lcjsx")
 stream_1/stream = ExtResource("32_t0kkn")
 stream_2/stream = ExtResource("33_wtuey")
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_q18r7"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_18jmj"]
 frames = 13
 speed_scale = 5.4
 frame_0/texture = ExtResource("22_70npq")
@@ -88,8 +88,8 @@ script = ExtResource("19_dmmn3")
 name = "Oculaberry"
 description = "Even Sauron couldn’t beat it in a staring contest."
 Id = 4
-texture = SubResource("AnimatedTexture_q18r7")
-amount = 10
+texture = SubResource("AnimatedTexture_18jmj")
+amount = 6
 max_stack = 32
 market_price = 0
 price = 0
@@ -97,13 +97,13 @@ player_price = 0
 book_pict_item = ExtResource("34_h0od2")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="Resource" id="Resource_113cl"]
+[sub_resource type="Resource" id="Resource_1tgcn"]
 script = ExtResource("19_dmmn3")
 name = "Gob Slime"
 description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
 Id = 3
 texture = ExtResource("20_gv0b4")
-amount = 50
+amount = 16
 max_stack = 32
 market_price = 0
 price = 0
@@ -111,35 +111,35 @@ player_price = 0
 book_pict_item = ExtResource("21_o3hsb")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="Resource" id="Resource_4f8tc"]
-script = ExtResource("19_dmmn3")
-name = "Goblin Ear"
-description = "Smells like swamp and regret. Surprisingly filling."
-Id = 2
-texture = ExtResource("17_ec85l")
-amount = 50
-max_stack = 32
-market_price = 10
-price = 10
-player_price = 10
-book_pict_item = ExtResource("18_ei3i1")
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ss267"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ebc3p"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
-[sub_resource type="Resource" id="Resource_mdmf0"]
+[sub_resource type="Resource" id="Resource_yvd14"]
 script = ExtResource("19_dmmn3")
 name = "Barry"
 description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
-texture = SubResource("CompressedTexture2D_ss267")
-amount = 50
+texture = SubResource("CompressedTexture2D_ebc3p")
+amount = 24
 max_stack = 32
 market_price = 10
 price = 10
 player_price = 10
 book_pict_item = ExtResource("35_ub8oh")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="Resource" id="Resource_8tqdb"]
+script = ExtResource("19_dmmn3")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("17_ec85l")
+amount = 1
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("18_ei3i1")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
 [node name="INV" type="Control"]
@@ -427,23 +427,32 @@ metadata/_custom_type_script = "uid://fn552lfqi4o0"
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-stretch_mode = 3
-script = ExtResource("10_k6bpj")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
-
-[node name="Slot1" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = SubResource("AnimatedTexture_q18r7")
+texture = SubResource("AnimatedTexture_18jmj")
 stretch_mode = 3
 script = ExtResource("10_k6bpj")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
 item = SubResource("Resource_ojgt8")
 
+[node name="Slot1" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("10_k6bpj")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
 [node name="Slot2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 3
+script = ExtResource("10_k6bpj")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+
+[node name="Slot3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -452,9 +461,20 @@ stretch_mode = 3
 script = ExtResource("10_k6bpj")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_113cl")
+item = SubResource("Resource_1tgcn")
 
-[node name="Slot3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
+[node name="Slot4" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_ebc3p")
+stretch_mode = 3
+script = ExtResource("10_k6bpj")
+drag_preview_pixel_art = true
+amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_yvd14")
+
+[node name="Slot5" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -463,27 +483,7 @@ stretch_mode = 3
 script = ExtResource("10_k6bpj")
 drag_preview_pixel_art = true
 amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_4f8tc")
-
-[node name="Slot4" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = SubResource("CompressedTexture2D_ss267")
-stretch_mode = 3
-script = ExtResource("10_k6bpj")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
-item = SubResource("Resource_mdmf0")
-
-[node name="Slot5" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-stretch_mode = 3
-script = ExtResource("10_k6bpj")
-drag_preview_pixel_art = true
-amount_label = NodePath("MarginContainer/AmountLabel")
+item = SubResource("Resource_8tqdb")
 
 [node name="Slot6" type="TextureRect" parent="VBoxContainer/HBoxContainer2/CenterContainer/MarginContainer3/VBoxContainer/MarginContainer2/InventoryContainer" node_paths=PackedStringArray("amount_label") instance=ExtResource("29_yu11e")]
 texture_filter = 1

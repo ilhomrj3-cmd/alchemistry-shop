@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://d2jlr8hipgpeh"]
+[gd_scene load_steps=73 format=4 uid="uid://d2jlr8hipgpeh"]
 
 [ext_resource type="Script" uid="uid://ch5xh42ds36fq" path="res://Scena/Menu/menu.gd" id="1_jmc6m"]
 [ext_resource type="PackedScene" uid="uid://uofdsdvixcvh" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/table.glb" id="2_vgvu5"]
@@ -16,9 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ds7j02j8wu1dj" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/flask_with_an_alchemical_potion_11.png" id="14_tr5hc"]
 [ext_resource type="Texture2D" uid="uid://dlu42rfqi16ur" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/flask_with_an_alchemical_potion_12.png" id="15_kjko3"]
 [ext_resource type="Texture2D" uid="uid://q3y0ml54kgsx" path="res://All_sprite/3D_scena/alchemist_shop/obj_shop/flask_with_an_alchemical_potion_13.png" id="16_y44mn"]
-[ext_resource type="Texture2D" uid="uid://blde7g122kkrf" path="res://All_sprite/3D_scena/alchemy_stuff_0.jpg" id="17_lyyus"]
 [ext_resource type="Script" uid="uid://y0pcd5i0ljjv" path="res://Scena/Menu/eye.gd" id="18_f5t5h"]
-[ext_resource type="Texture2D" uid="uid://bvn6k4aq1w5qh" path="res://All_sprite/3D_scena/alchemy_stuff_2.jpg" id="18_w6rn3"]
 [ext_resource type="Texture2D" uid="uid://1bbxw5olesw3" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_0.png" id="20_tr5hc"]
 [ext_resource type="Texture2D" uid="uid://dywtjvnlfwv4p" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_1.jpg" id="21_kjko3"]
 [ext_resource type="Texture2D" uid="uid://trn433okplo2" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_2.jpg" id="22_y44mn"]
@@ -26,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://d161a42yrphkk" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_4.jpg" id="24_qhgan"]
 [ext_resource type="Texture2D" uid="uid://cedwi6b8gu0vx" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_5.png" id="25_t3a7w"]
 [ext_resource type="Texture2D" uid="uid://cei3utopxh68x" path="res://All_sprite/3D_scena/alchemist_shop/candle_light_6.png" id="26_br4d1"]
+[ext_resource type="AudioStream" uid="uid://cma6eccba270g" path="res://Sound_effect_Music/Sound_effect/Shop_sound/Lamp_active/Горящая керосиновая лампа.mp3" id="26_f5t5h"]
 [ext_resource type="Texture2D" uid="uid://c4huc8nt4t6it" path="res://All_sprite/item_sprite/money/vollet_money_Image_0.png" id="27_y44mn"]
 [ext_resource type="Texture2D" uid="uid://jbd0e30wyvde" path="res://All_sprite/item_sprite/money/vollet_money_Image_1.png" id="28_f5t5h"]
 [ext_resource type="Texture2D" uid="uid://rixnkvvbhjgj" path="res://All_sprite/item_sprite/money/vollet_money_Sprite-0016.png" id="29_qhgan"]
@@ -33,9 +32,6 @@
 [sub_resource type="Environment" id="Environment_ax4xt"]
 background_mode = 2
 glow_enabled = true
-glow_levels/2 = 0.73
-glow_levels/3 = 2.03
-glow_levels/4 = 0.88
 glow_intensity = 6.78
 glow_strength = 0.88
 glow_bloom = 0.05
@@ -323,13 +319,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1n1hi")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kjko3"]
+load_path = "res://.godot/imported/alchemy_stuff_0.jpg-b55078d26994625c283aceca8f122af0.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y44mn"]
+load_path = "res://.godot/imported/alchemy_stuff_2.jpg-babdad4f215c3406791c14e69d2b1ae8.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gx0i"]
 resource_name = "eyeball_mat1"
 cull_mode = 2
-albedo_texture = ExtResource("17_lyyus")
+albedo_texture = SubResource("CompressedTexture2D_kjko3")
 roughness = 0.873666
 normal_enabled = true
-normal_texture = ExtResource("18_w6rn3")
+normal_texture = SubResource("CompressedTexture2D_y44mn")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5oko4"]
 _surfaces = [{
@@ -511,7 +513,7 @@ normal_texture = ExtResource("25_t3a7w")
 ao_enabled = true
 ao_texture = ExtResource("23_f5t5h")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qirit"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_kjko3"]
 _surfaces = [{
 "aabb": AABB(-43.2227, -32.1833, -10.1622, 104.668, 92.3071, 102.52),
 "format": 34896613377,
@@ -543,7 +545,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_qirit")
+shadow_mesh = SubResource("ArrayMesh_kjko3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgox3"]
 resource_name = "material"
@@ -551,7 +553,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("26_br4d1")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1xary"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_y44mn"]
 _surfaces = [{
 "aabb": AABB(-31.1428, -21.4089, -38.9804, 60.9093, 92.1707, 48.3773),
 "format": 34896613377,
@@ -583,75 +585,19 @@ _surfaces = [{
 "vertex_data": PackedByteArray("+hvUAmdbd3PrFEMvGXJHcwdXAADhU0pw5Q3DW6GIxnDigCfSgtaVXDWqQgV+KZVntjSpv7PWJmzrBlmI856DbAAAC7UAteRopsxlEasV42X8nLzr7OsFXBDXDsb/v2Bia8n/////gl+15B6M/3+mZVryLlL/P8xn//8+GAAAtGh9T5cvd3QocdefazjoVK9mSkdjXyGVuHB6lZRrUIBWZcbBp0cdSxxkPLYffqOAQmH0qdK0PrZ6XSiL0p6Gq/liWD5rj+C1jm5AGoR1pwy+mZo0eUxWIeq/XALu0TMzLTG3DvXG8StB03Iv1dx8LEM1rgn50AoD5sJtCTHL4g7WPw0h0D+bLgJCUCNbTiYp+jBvCnRQcRonMqMf2TT5Dmo1CgI8zM0LuzLfDD++")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_1xary")
+shadow_mesh = SubResource("ArrayMesh_y44mn")
 
 [sub_resource type="Animation" id="Animation_kdr8u"]
 resource_name = "Take 001"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "rotation_3d"
-tracks/0/imported = true
+tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone002_01")
+tracks/0/path = NodePath("../WallTorch_01_lambert9_0/Skeleton3D:Bone010_09")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.00168485, -0.0902106, 0.00430168, 0.995912, 0.0333333, 1, 0.000135887, -0.0351609, -0.0442804, 0.9984, 0.0666667, 1, -0.00390317, -0.0341609, -0.122718, 0.991846, 0.1, 1, -0.000970203, -0.080268, -0.0676545, 0.994474, 0.133333, 1, 0.00333939, -0.126803, -0.0236058, 0.991641, 0.166667, 1, 0.00379299, -0.12274, -0.00299121, 0.992427, 0.2, 1, 0.000782637, -0.0839816, 0.0416763, 0.995595, 0.233333, 1, -0.00535195, -0.0271953, 0.0861309, 0.995898, 0.266667, 1, -0.00485351, 0.037795, 0.0738592, 0.99654, 0.3, 1, 0.00188542, 0.0724147, 0.0272477, 0.997001, 0.333333, 1, 0.00543861, 0.073807, -0.0144548, 0.997153, 0.366667, 1, 0.000795286, 0.0297775, 0.010062, 0.999506, 0.4, 1, -0.00603228, -0.00752964, 0.0859099, 0.996256, 0.433333, 1, -0.0196444, 0.0537061, 0.162505, 0.985049, 0.466667, 1, -0.0254053, 0.135381, 0.189367, 0.972197, 0.5, 1, -0.0172465, 0.0839713, 0.151354, 0.984756, 0.533333, 1, -0.00551574, 0.0423032, 0.079755, 0.995901, 0.566667, 1, -0.00695828, 0.0580874, 0.0925156, 0.993991, 0.6, 1, -0.00475962, 0.0819206, 0.0840379, 0.993078)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone001_00")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.482061, -0.517754, 0.473113, 0.525082, 0.0333333, 1, 0.470095, 0.52955, -0.498781, -0.499804, 0.0666667, 1, -0.487389, -0.512418, 0.516594, 0.482711, 0.1, 1, -0.500933, -0.499455, 0.499054, 0.500555, 0.133333, 1, -0.518695, -0.481279, 0.485201, 0.513718, 0.166667, 1, -0.517503, -0.482409, 0.471747, 0.526239, 0.2, 1, -0.496661, -0.503983, 0.461688, 0.534951, 0.233333, 1, -0.46792, -0.533847, 0.470378, 0.524217, 0.266667, 1, 0.456334, 0.546935, -0.501034, -0.491515, 0.3, 1, 0.467373, 0.537689, -0.52173, -0.469308, 0.333333, 1, -0.487784, -0.519098, 0.529938, 0.460184, 0.366667, 1, -0.512038, -0.495865, 0.524361, 0.465812, 0.4, 1, 0.515933, 0.493269, -0.50357, -0.48674, 0.433333, 1, 0.4762, 0.534504, -0.490891, -0.496553, 0.466667, 1, 0.445329, 0.564119, -0.502001, -0.481089, 0.5, 1, -0.459764, -0.549395, 0.478084, 0.508151, 0.533333, 1, -0.480955, -0.527562, 0.469469, 0.519576, 0.566667, 1, -0.464956, -0.544226, 0.477377, 0.509653, 0.6, 1, 0.453539, 0.556153, -0.494911, -0.489958)
-tracks/2/type = "position_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/IK Chain001")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, -0.354336, 85.2954, -1.78646, 0.0666667, 1, -0.354336, 85.2954, 0.347179, 0.133333, 1, -0.354336, 85.2954, -3.34839, 0.2, 1, 1.24018, 85.2954, -3.34839, 0.266667, 1, 1.24018, 85.2954, -4.48622, 0.333333, 1, 2.4925, 85.2954, -4.48622, 0.4, 1, 2.4925, 85.2954, -8.22512, 0.466667, 1, 4.20317, 85.2954, -8.22512, 0.533333, 1, 4.20317, 85.2954, -4.25439, 0.6, 1, 2.67675, 85.2954, -4.3707)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone006_05")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0.00168494, -0.0902099, 0.00430134, 0.995912, 0.0333333, 1, 0.000545997, -0.0636134, -0.0103888, 0.99792, 0.0666667, 1, -8.78106e-05, -0.0908697, -0.0554914, 0.994316, 0.1, 1, -0.000310318, -0.0879581, -0.0584878, 0.994406, 0.133333, 1, -0.00138362, -0.0847436, -0.0742593, 0.993631, 0.166667, 1, -0.0009969, -0.105229, -0.0746523, 0.991642, 0.2, 1, 0.000191408, -0.0914459, -0.0508719, 0.99451, 0.233333, 1, 0.000586591, -0.0193194, -0.0245508, 0.999512, 0.266667, 1, 0.00587924, 0.060281, -0.055637, 0.996612, 0.3, 1, 0.00743809, 0.0732207, -0.11773, 0.990315, 0.333333, 1, 0.00165479, 0.0553697, -0.173069, 0.983351, 0.366667, 1, -0.000174659, 0.0629286, -0.205435, 0.976645, 0.4, 1, 0.0041268, 0.0762445, -0.187138, 0.979362, 0.433333, 1, 0.0136784, 0.112056, -0.135661, 0.984303, 0.466667, 1, 0.0255684, 0.166233, -0.134078, 0.976594, 0.5, 1, 0.00628773, 0.0636827, -0.109028, 0.991977, 0.533333, 1, -0.00337983, -0.0315743, -0.118216, 0.99248, 0.566667, 1, 0.00100532, 0.00877306, -0.0886524, 0.996023, 0.6, 1, 0.00580304, 0.0572205, -0.0796195, 0.995165)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone005_04")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.0525629, 0.0694302, 0.673392, 0.734139, 0.0333333, 1, 0.079917, 0.0424836, 0.680724, 0.726927, 0.0666667, 1, 0.0824469, 0.0404022, 0.705422, 0.702816, 0.1, 1, 0.0603041, 0.0624039, 0.704523, 0.704355, 0.133333, 1, 0.0382745, 0.0841706, 0.709225, 0.698892, 0.166667, 1, 0.0287343, 0.0930358, 0.699664, 0.707806, 0.2, 1, 0.0344255, 0.0858417, 0.677232, 0.729934, 0.233333, 1, 0.0595575, 0.0584235, 0.660801, 0.74591, 0.266667, 1, 0.0904886, 0.0249592, 0.671631, 0.734916, 0.3, 1, 0.0992466, 0.0138903, 0.693391, 0.713559, 0.333333, 1, 0.0924144, 0.0188518, 0.714302, 0.693453, 0.366667, 1, 0.0725524, 0.0380972, 0.729296, 0.679273, 0.4, 1, 0.0541213, 0.0557972, 0.718916, 0.690737, 0.433333, 1, 0.0699492, 0.0368089, 0.680329, 0.728632, 0.466667, 1, 0.0983033, 0.00592662, 0.663822, 0.741378, 0.5, 1, 0.0707031, 0.036122, 0.659506, 0.747495, 0.533333, 1, 0.0504819, 0.0589081, 0.670202, 0.738113, 0.566667, 1, 0.0668238, 0.0405952, 0.663029, 0.7445, 0.6, 1, 0.0875947, 0.0178413, 0.665554, 0.740977)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/IK Chain002")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 8.39827, 94.5576, -27.2267, 0.0666667, 1, 8.39827, 94.5576, -25.0931, 0.133333, 1, 8.39827, 94.5576, -28.7886, 0.2, 1, 9.99279, 94.5576, -28.7886, 0.266667, 1, 9.99279, 94.5576, -29.9265, 0.333333, 1, 11.2451, 94.5576, -29.9265, 0.4, 1, 11.2451, 94.5576, -33.6654, 0.466667, 1, 12.9558, 94.5576, -33.6654, 0.533333, 1, 12.9558, 94.5576, -29.6946, 0.6, 1, 11.4294, 94.5576, -29.8109)
-tracks/6/type = "rotation_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone010_09")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, -0.000854312, 0.0616885, 0.046928, 0.996991, 0.0333333, 1, 0.0015301, 0.109031, 0.0547125, 0.99253, 0.0666667, 1, 0.00388954, 0.101933, 0.0318644, 0.994273, 0.1, 1, 0.00479112, 0.0695209, -0.0104273, 0.997514, 0.133333, 1, 0.00361532, 0.0357814, -0.0651942, 0.997224, 0.166667, 1, 0.000985752, -0.00229671, -0.0501361, 0.998739, 0.2, 1, 0.000504924, -0.00587504, -0.0107347, 0.999925, 0.233333, 1, 0.00277284, 0.0556295, 0.00329016, 0.998442, 0.266667, 1, 0.0133337, 0.123106, -0.0410801, 0.991453, 0.3, 1, 0.0155573, 0.122556, -0.0915295, 0.988109, 0.333333, 1, 0.00981379, 0.0910616, -0.135731, 0.986503, 0.366667, 1, -0.000177577, 0.0629296, -0.205436, 0.976645, 0.4, 1, -0.00597027, 0.0429482, -0.222834, 0.973892, 0.433333, 1, 0.00372842, 0.0607642, -0.157049, 0.985713, 0.466667, 1, 0.0112785, 0.0998034, -0.138964, 0.985191, 0.5, 1, 0.00310869, 0.0307254, -0.0762599, 0.99661, 0.533333, 1, 0.000110878, -0.029984, -0.0437985, 0.99859, 0.566667, 1, 0.0024207, 0.0273391, -0.0284367, 0.999219, 0.6, 1, 0.00863699, 0.0918951, -0.0346701, 0.995128)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Skeleton3D:Bone009_08")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.406144, 0.453009, 0.539691, 0.581862, 0.0333333, 1, 0.433154, 0.426408, 0.531178, 0.590258, 0.0666667, 1, 0.448558, 0.411698, 0.550648, 0.571041, 0.1, 1, 0.4294, 0.431081, 0.561787, 0.560518, 0.133333, 1, 0.413347, 0.446503, 0.57759, 0.544215, 0.166667, 1, 0.400163, 0.458769, 0.574651, 0.54697, 0.2, 1, 0.392911, 0.464591, 0.552675, 0.569497, 0.233333, 1, 0.405278, 0.450051, 0.525313, 0.597704, 0.266667, 1, 0.437184, 0.41592, 0.517828, 0.606411, 0.3, 1, 0.456262, 0.39511, 0.531475, 0.594347, 0.333333, 1, 0.461736, 0.388491, 0.552782, 0.574723, 0.366667, 1, 0.45304, 0.397104, 0.5761, 0.552424, 0.4, 1, 0.431919, 0.418191, 0.577248, 0.552582, 0.433333, 1, 0.424535, 0.422538, 0.5362, 0.594744, 0.466667, 1, 0.439579, 0.403341, 0.507043, 0.622088, 0.5, 1, 0.413982, 0.432094, 0.518233, 0.611022, 0.533333, 1, 0.402675, 0.44627, 0.538119, 0.590867, 0.566667, 1, 0.412603, 0.434257, 0.523288, 0.606093, 0.6, 1, 0.431479, 0.413174, 0.514258, 0.615348)
-tracks/8/type = "position_3d"
-tracks/8/imported = true
-tracks/8/enabled = true
-tracks/8/path = NodePath("Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/IK Chain003")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 23.0854, 114.243, -18.616, 0.0666667, 1, 23.0854, 114.243, -16.4824, 0.133333, 1, 23.0854, 114.243, -20.1779, 0.2, 1, 24.6799, 114.243, -20.1779, 0.266667, 1, 24.6799, 114.243, -21.3158, 0.333333, 1, 25.9322, 114.243, -21.3158, 0.4, 1, 25.9322, 114.243, -25.0547, 0.466667, 1, 27.6429, 114.243, -25.0547, 0.533333, 1, 27.6429, 114.243, -21.0839, 0.6, 1, 26.1165, 114.243, -21.2002)
+tracks/0/keys = PackedFloat32Array(0, 1, -0.000854312, 0.0616885, 0.046928, 0.996991, 0.0333333, 1, 0.0015301, 0.109031, 0.0547125, 0.99253, 0.0666667, 1, 0.00388954, 0.101933, 0.0318644, 0.994273, 0.1, 1, 0.00479112, 0.0695209, -0.0104273, 0.997514, 0.133333, 1, 0.00361532, 0.0357814, -0.0651942, 0.997224, 0.166667, 1, 0.000985752, -0.00229671, -0.0501361, 0.998739, 0.2, 1, 0.000504924, -0.00587504, -0.0107347, 0.999925, 0.233333, 1, 0.00277284, 0.0556295, 0.00329016, 0.998442, 0.266667, 1, 0.0133337, 0.123106, -0.0410801, 0.991453, 0.3, 1, 0.0155573, 0.122556, -0.0915295, 0.988109, 0.333333, 1, 0.00981379, 0.0910616, -0.135731, 0.986503, 0.366667, 1, -0.000177577, 0.0629296, -0.205436, 0.976645, 0.4, 1, -0.00597027, 0.0429482, -0.222834, 0.973892, 0.433333, 1, 0.00372842, 0.0607642, -0.157049, 0.985713, 0.466667, 1, 0.0112785, 0.0998034, -0.138964, 0.985191, 0.5, 1, 0.00310869, 0.0307254, -0.0762599, 0.99661, 0.533333, 1, 0.000110878, -0.029984, -0.0437985, 0.99859, 0.566667, 1, 0.0024207, 0.0273391, -0.0284367, 0.999219, 0.6, 1, 0.00863699, 0.0918951, -0.0346701, 0.995128)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ifgdi"]
 _data = {
@@ -749,35 +695,56 @@ theme_override_constants/separation = 60
 [node name="Control" type="Control" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
+[node name="continue_button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.648689, 0.702457, 7.70092e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 44
 theme_override_font_sizes/font_size = 80
 text = "Continue"
+flat = true
 
-[node name="Button2" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
+[node name="new_game_button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 44
 theme_override_font_sizes/font_size = 80
 text = "New Game"
+flat = true
 
-[node name="Button3" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
+[node name="option_button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_constants/outline_size = 44
 theme_override_font_sizes/font_size = 80
 text = "Option"
+flat = true
 
-[node name="Button4" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
+[node name="credit_button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.647059, 0.701961, 0, 1)
+theme_override_constants/outline_size = 44
 theme_override_font_sizes/font_size = 80
 text = "Credit"
+flat = true
 
-[node name="Button5" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
+[node name="quit_button" type="Button" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.701961, 0, 0, 0.654902)
+theme_override_constants/outline_size = 44
 theme_override_font_sizes/font_size = 80
-text = "Quet"
+text = "Quit"
+flat = true
 
 [node name="Control2" type="Control" parent="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer"]
 layout_mode = 2
@@ -788,45 +755,48 @@ size_flags_horizontal = 3
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="Sketchfab_Scene" parent="Node3D" instance=ExtResource("2_vgvu5")]
+[node name="table" parent="Node3D" instance=ExtResource("2_vgvu5")]
 transform = Transform3D(0.0388494, 0, 0.144998, 0, 1.93922, 0, -0.144998, 0, 0.0388494, 0.282605, 0.427418, -0.240379)
 
 [node name="flask_obj_cleaner_materialmerger_gles" type="Node3D" parent="Node3D"]
 transform = Transform3D(-0.000164669, 0.000267112, -5.93108e-20, 0, 9.64909e-19, 0.00434556, 0.000267112, 0.000164669, -3.65639e-20, 0.281351, 9.87755, 0.678794)
 
-[node name="Object_2" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="all_potion_obj" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
+transform = Transform3D(0.999999, 0, 6.61744e-24, 0, 0.999999, 1.98523e-23, -6.61744e-24, -1.98523e-23, 0.999999, 0, 0, 0)
+
+[node name="Object_2" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, -5.96046e-08, 1.98523e-23, 0, 1, -3.97047e-23, 0, -5.29396e-23, 1, -21.4288, 926.202, 88.8018)
 mesh = SubResource("ArrayMesh_4d3aa")
 skeleton = NodePath("")
 
-[node name="Object_3" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="Object_3" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, -5.96046e-08, 1.98523e-23, 0, 1, -3.97047e-23, 0, -5.29396e-23, 1, -21.4288, 926.202, 88.8018)
 material_override = SubResource("StandardMaterial3D_f5t5h")
 mesh = SubResource("ArrayMesh_mu8bl")
 skeleton = NodePath("")
 
-[node name="Object_4" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="Object_4" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, -5.96046e-08, 1.98523e-23, 0, 1, -3.97047e-23, 0, -5.29396e-23, 1, -21.4288, 926.202, 88.8018)
 mesh = SubResource("ArrayMesh_axr2r")
 skeleton = NodePath("")
 
-[node name="Object_5" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="Object_5" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, -5.96046e-08, 1.98523e-23, 0, 1, -3.97047e-23, 0, -5.29396e-23, 1, -21.4288, 926.202, 88.8018)
 mesh = SubResource("ArrayMesh_ioucj")
 skeleton = NodePath("")
 
-[node name="Object_6" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="Object_6" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, -5.96046e-08, 1.98523e-23, 0, 1, -3.97047e-23, 0, -5.29396e-23, 1, -21.4288, 926.202, 88.8018)
 mesh = SubResource("ArrayMesh_hqpkm")
 skeleton = NodePath("")
 
-[node name="Object_7" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles"]
-transform = Transform3D(1, -2.98023e-08, 1.98523e-23, -2.98023e-08, 1, -5.9557e-23, -6.61744e-24, -7.94093e-23, 1, -21.4287, 926.202, 88.8018)
+[node name="Object_7" type="MeshInstance3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/all_potion_obj"]
+transform = Transform3D(1, 0, 1.32349e-23, 0, 1, 9.26442e-23, 0, -5.9557e-23, 1, -21.4288, 926.202, 88.8018)
 mesh = SubResource("ArrayMesh_vr8jj")
 skeleton = NodePath("")
 
 [node name="eye" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles" node_paths=PackedStringArray("camera")]
-transform = Transform3D(0.688211, -0.209136, -0.694714, -0.725473, -0.208026, -0.656059, -0.0073131, 0.955503, -0.294889, 0, 0, 0)
+transform = Transform3D(0.685464, -0.209924, -0.697188, -0.728056, -0.208767, -0.652954, -0.00847929, 0.955168, -0.295939, 16.839, 51.0339, 0)
 script = ExtResource("18_f5t5h")
 camera = NodePath("../../../Camera3D")
 
@@ -863,14 +833,14 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(0.0161884, 0.00233179, -0.999866, 0.996025, 0.0875613, 0.0163305, 0.0875877, -0.996156, -0.000905037, 2.51149, 58.4479, -4.01285)
 bones/1/enabled = true
 bones/1/position = Vector3(2.51149, 58.4479, -4.01285)
-bones/1/rotation = Quaternion(-0.482061, -0.517754, 0.473113, 0.525082)
+bones/1/rotation = Quaternion(-0.464753, -0.53998, 0.51678, 0.474726)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Bone002_01"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.983687, -0.00887218, -0.179669, 0.00826421, 0.999957, -0.00413203, 0.179698, 0.0025798, 0.983718, 8.7395, -1.90735e-06, 5.48363e-06)
 bones/2/enabled = true
 bones/2/position = Vector3(8.7395, -1.90735e-06, 5.48363e-06)
-bones/2/rotation = Quaternion(0.00168485, -0.0902106, 0.00430168, 0.995912)
+bones/2/rotation = Quaternion(0.000256151, 0.0640643, 0.0385296, 0.997202)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Bone003_02"
 bones/3/parent = 2
@@ -891,14 +861,14 @@ bones/5/parent = 0
 bones/5/rest = Transform3D(0.083446, -0.981427, 0.172734, 0.996025, 0.0875614, 0.0163304, -0.0311519, 0.170684, 0.984833, 5.70806, 67.7101, -29.6624)
 bones/5/enabled = true
 bones/5/position = Vector3(5.70806, 67.7101, -29.6624)
-bones/5/rotation = Quaternion(0.0525629, 0.0694302, 0.673392, 0.734139)
+bones/5/rotation = Quaternion(0.0971394, 0.0165679, 0.688202, 0.718796)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Bone006_05"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.983687, -0.0088715, -0.179668, 0.00826351, 0.999957, -0.00413214, 0.179697, 0.00258005, 0.983719, 8.73952, -9.53674e-07, 5.72205e-06)
 bones/6/enabled = true
 bones/6/position = Vector3(8.73952, -9.53674e-07, 5.72205e-06)
-bones/6/rotation = Quaternion(0.00168494, -0.0902099, 0.00430134, 0.995912)
+bones/6/rotation = Quaternion(0.0070638, 0.0701181, -0.102755, 0.992207)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Bone007_06"
 bones/7/parent = 6
@@ -919,14 +889,14 @@ bones/9/parent = 0
 bones/9/rest = Transform3D(0.00703251, -0.260077, 0.965562, 0.996025, 0.0875612, 0.0163305, -0.0887931, 0.96161, 0.259659, 25.5258, 87.3955, -17.2653)
 bones/9/enabled = true
 bones/9/position = Vector3(25.5258, 87.3955, -17.2653)
-bones/9/rotation = Quaternion(0.406144, 0.453009, 0.539691, 0.581862)
+bones/9/rotation = Quaternion(0.451697, 0.400182, 0.52823, 0.597325)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "Bone010_09"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0.987985, -0.0936791, 0.122926, 0.0934683, 0.995594, 0.00749332, -0.123086, 0.00408636, 0.992388, 8.73952, -9.53674e-07, 3.8147e-06)
 bones/10/enabled = true
 bones/10/position = Vector3(8.73952, -9.53674e-07, 3.8147e-06)
-bones/10/rotation = Quaternion(-0.000854312, 0.0616885, 0.046928, 0.996991)
+bones/10/rotation = Quaternion(0.0150232, 0.122718, -0.0793511, 0.98915)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Bone011_010"
 bones/11/parent = 10
@@ -974,23 +944,11 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4yevq")
 skeleton = NodePath("")
 
-[node name="candleflame001" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 2.37966, 58.4479, -3.97786)
-
-[node name="IK Chain001" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.354336, 85.2954, -1.78646)
-
-[node name="IK Chain002" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(-0.173648, -0.984808, 0, 0, 0, 1, -0.984808, 0.173648, 0, 8.39827, 94.5576, -27.2267)
-
-[node name="candleflame002" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(-0.173648, -0.984808, 0, 0, 0, 1, -0.984808, 0.173648, 0, 5.76542, 67.7101, -29.5386)
-
-[node name="IK Chain003" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(-0.965926, -0.258819, 0, 0, 0, 1, -0.258819, 0.965926, 0, 23.0854, 114.243, -18.616)
-
-[node name="candleflame003" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
-transform = Transform3D(-0.965926, -0.258819, 0, 0, 0, 1, -0.258819, 0.965926, 0, 25.6622, 87.3955, -17.265)
+[node name="lamp_sfx" type="AudioStreamPlayer3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Object003"]
+transform = Transform3D(78.1223, -8.51559, 4.19334e-07, 3.8147e-06, 82.9834, -8.66537e-07, -2.27374e-13, -2.84217e-13, 64.8155, 3.36244, -2.19036, 72.103)
+stream = ExtResource("26_f5t5h")
+volume_db = -17.92
+autoplay = true
 
 [node name="Plane006" type="Node3D" parent="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4"]
 transform = Transform3D(0.969521, -0.227129, 0.0918763, 0.12079, 0.769354, 0.627299, -0.213163, -0.597082, 0.77334, 33.1263, 25.4303, 30.5963)
@@ -1058,5 +1016,8 @@ transform = Transform3D(24.4174, 1.27055e-21, 1.90735e-06, -2.86102e-06, 1.16467
 mesh = SubResource("ArrayMesh_swlhm")
 skeleton = NodePath("")
 
-[connection signal="mouse_entered" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/Button5" to="Node3D/flask_obj_cleaner_materialmerger_gles/eye" method="_on_button_5_mouse_entered"]
-[connection signal="mouse_exited" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/Button5" to="Node3D/flask_obj_cleaner_materialmerger_gles/eye" method="_on_button_5_mouse_exited"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/new_game_button" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/quit_button" to="Node3D/flask_obj_cleaner_materialmerger_gles/eye" method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/quit_button" to="Node3D/flask_obj_cleaner_materialmerger_gles/eye" method="_on_quit_button_mouse_exited"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/menu_ui/HBoxContainer/Margin_main_menu_ui/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="Node3D/flask_obj_cleaner_materialmerger_gles/Sketchfab_Scene/Sketchfab_model/7bdce573fa4f4345b532d79e2adc2223_fbx/Object_2/RootNode/Object_4/Object003/lamp_sfx" to="." method="_on_lamp_sfx_finished"]

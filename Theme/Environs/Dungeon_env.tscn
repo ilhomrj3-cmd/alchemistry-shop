@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cti711nvlbw51"]
+
+[sub_resource type="Environment" id="Environment_t4iwp"]
+background_mode = 2
+glow_enabled = true
+glow_levels/1 = 2.5
+glow_levels/2 = 3.38
+glow_levels/3 = 2.5
+glow_levels/4 = 1.1
+glow_levels/5 = 3.64
+glow_levels/6 = 1.4
+glow_intensity = 8.0
+glow_strength = 0.62
+glow_bloom = 0.07
+glow_blend_mode = 1
+glow_hdr_threshold = 0.0
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 7.42
+fog_density = 0.0825
+fog_depth_begin = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0152
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0, 0, 0.0823529, 1)
+volumetric_fog_emission_energy = 0.0
+
+[node name="Environment" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t4iwp")
+
+[node name="DirectionalLight_night" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.152814, 0.988255, 0, -0.988255, -0.152814, -142.21, 853.767, -185.992)
+light_color = Color(0.663262, 0.865524, 1, 1)
+light_energy = 0.003
+light_angular_distance = 3.63
+light_bake_mode = 0
+shadow_bias = 1.312
+directional_shadow_mode = 0

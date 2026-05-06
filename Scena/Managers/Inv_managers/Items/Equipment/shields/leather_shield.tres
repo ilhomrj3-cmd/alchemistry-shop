@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://c0kxkfjniaebd"]
+
+[ext_resource type="PackedScene" uid="uid://48v12groimm8" path="res://All_sprite/3D_scena/Levels/shilds/leather_shiel_mesh.glb" id="1_4ekjq"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_fk750"]
+[ext_resource type="Texture2D" uid="uid://csyc156flasy1" path="res://All_sprite/item_sprite/еquipment/shields/leather shield.png" id="2_lbl3y"]
+
+[resource]
+script = ExtResource("1_fk750")
+name = "Leather shield"
+description = "light and fast"
+Id = 300
+texture = ExtResource("2_lbl3y")
+amount = 1
+max_stack = 1
+mesh_item = ExtResource("1_4ekjq")
+market_price = 0
+price = 0
+player_price = 0
+metadata/_custom_type_script = "uid://bamt5q6hcra14"

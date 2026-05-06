@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=27 format=3 uid="uid://di4oj62vecxce"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=27 format=3 uid="uid://ch3ievqhb32ui"]
 
 [ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_5wmds"]
 [ext_resource type="Script" uid="uid://b8m3ro0v7uiwe" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_j6qk1"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dkjb07lsw31gq" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_8.png" id="18_boffl"]
 [ext_resource type="Texture2D" uid="uid://q5e4x8emwj33" path="res://All_sprite/item_sprite/ingredientes/Oculaberry/Oculaberry_9.png" id="19_tg6bf"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_q18r7"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_18jmj"]
 frames = 13
 speed_scale = 5.4
 frame_0/texture = ExtResource("8_kjrjn")
@@ -55,8 +55,8 @@ script = ExtResource("1_5wmds")
 name = "Oculaberry"
 description = "Even Sauron couldn’t beat it in a staring contest."
 Id = 4
-texture = SubResource("AnimatedTexture_q18r7")
-amount = 10
+texture = SubResource("AnimatedTexture_18jmj")
+amount = 6
 max_stack = 32
 market_price = 0
 price = 0
@@ -64,13 +64,13 @@ player_price = 0
 book_pict_item = ExtResource("7_qqyyn")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="Resource" id="Resource_113cl"]
+[sub_resource type="Resource" id="Resource_1tgcn"]
 script = ExtResource("1_5wmds")
 name = "Gob Slime"
 description = "Cold, wiggly, and sticks to everything. Useful, yet gross."
 Id = 3
 texture = ExtResource("6_yaeur")
-amount = 50
+amount = 16
 max_stack = 32
 market_price = 0
 price = 0
@@ -78,30 +78,16 @@ player_price = 0
 book_pict_item = ExtResource("5_4f8tc")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
-[sub_resource type="Resource" id="Resource_4f8tc"]
-script = ExtResource("1_5wmds")
-name = "Goblin Ear"
-description = "Smells like swamp and regret. Surprisingly filling."
-Id = 2
-texture = ExtResource("9_kjrjn")
-amount = 50
-max_stack = 32
-market_price = 10
-price = 10
-player_price = 10
-book_pict_item = ExtResource("8_qqyyn")
-metadata/_custom_type_script = "uid://bamt5q6hcra14"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ss267"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ebc3p"]
 load_path = "res://.godot/imported/Berry.png-a4cfb69337d9c7acaffeba76d16459f9.ctex"
 
-[sub_resource type="Resource" id="Resource_mdmf0"]
+[sub_resource type="Resource" id="Resource_yvd14"]
 script = ExtResource("1_5wmds")
 name = "Barry"
 description = "Nature’s candy. Sweet enough to forget the all problem."
 Id = 1
-texture = SubResource("CompressedTexture2D_ss267")
-amount = 50
+texture = SubResource("CompressedTexture2D_ebc3p")
+amount = 24
 max_stack = 32
 market_price = 10
 price = 10
@@ -109,7 +95,21 @@ player_price = 10
 book_pict_item = ExtResource("8_kcfvl")
 metadata/_custom_type_script = "uid://bamt5q6hcra14"
 
+[sub_resource type="Resource" id="Resource_8tqdb"]
+script = ExtResource("1_5wmds")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("9_kjrjn")
+amount = 1
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("8_qqyyn")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
 [resource]
 script = ExtResource("2_j6qk1")
-items = Array[ExtResource("1_5wmds")]([null, SubResource("Resource_ojgt8"), SubResource("Resource_113cl"), SubResource("Resource_4f8tc"), SubResource("Resource_mdmf0"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_5wmds")]([SubResource("Resource_ojgt8"), null, null, SubResource("Resource_1tgcn"), SubResource("Resource_yvd14"), SubResource("Resource_8tqdb"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://b8m3ro0v7uiwe"
