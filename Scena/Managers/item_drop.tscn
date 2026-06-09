@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjxwujhknoh8a"]
+
+[ext_resource type="Script" uid="uid://4tcpcsh0b37j" path="res://Scena/Managers/item_drop.gd" id="1_en1u5"]
+[ext_resource type="Texture2D" uid="uid://47ttvckh1xuw" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear_pict.png" id="2_2fb84"]
+[ext_resource type="Script" uid="uid://bamt5q6hcra14" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="3_5t8ix"]
+[ext_resource type="Texture2D" uid="uid://cehm78occmpnd" path="res://All_sprite/item_sprite/ingredientes/Goblin_ear.png" id="4_fisjm"]
+
+[sub_resource type="Resource" id="Resource_x5uru"]
+script = ExtResource("3_5t8ix")
+name = "Goblin Ear"
+description = "Smells like swamp and regret. Surprisingly filling."
+Id = 2
+texture = ExtResource("4_fisjm")
+amount = 20
+max_stack = 32
+market_price = 10
+price = 10
+player_price = 10
+book_pict_item = ExtResource("2_2fb84")
+metadata/_custom_type_script = "uid://bamt5q6hcra14"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gcnrt"]
+radius = 0.836518
+
+[node name="item_drop" type="Node3D"]
+script = ExtResource("1_en1u5")
+item_drop_res = SubResource("Resource_x5uru")
+
+[node name="Area3D_take_item" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D_take_item"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70435, 0)
+shape = SubResource("SphereShape3D_gcnrt")
+
+[node name="Press_E_lable" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750006, 0)
+
+[node name="Label3D" type="Label3D" parent="Press_E_lable"]
+transform = Transform3D(1, 0, 0, 0, 0.982366, 0.18697, 0, -0.18697, 0.982366, 0, -0.0762661, -0.245824)
+billboard = 1
+modulate = Color(1, 1, 0.160784, 1)
+text = "E"
+font_size = 92
+outline_size = 21
+
+[connection signal="body_entered" from="Area3D_take_item" to="." method="_on_area_3d_take_item_body_entered"]
+[connection signal="body_exited" from="Area3D_take_item" to="." method="_on_area_3d_take_item_body_exited"]

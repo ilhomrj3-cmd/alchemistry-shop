@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://bammfqb0kdw"]
+
+[ext_resource type="Script" uid="uid://gm56p7v4kp7i" path="res://Scena/Managers/3d_manager/3d_ui_take_damage.gd" id="1_xpgyb"]
+
+[sub_resource type="Animation" id="Animation_s04uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("damage_lable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.294582, 0.294582, 0.294582)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("damage_lable:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damage_lable:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2valf"]
+resource_name = "take_damage"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("damage_lable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.212094, 0.966667, 1.5),
+"transitions": PackedFloat32Array(1, 10.9283, 1, 0.143587),
+"update": 0,
+"values": [Vector3(0.294582, 0.294582, 0.294582), Vector3(0.666261, 0.666261, 0.666261), Vector3(0.666261, 0.666261, 0.666261), Vector3(0.044, 0.044, 0.044)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("damage_lable:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damage_lable:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.213373, 0.972979, 1.5),
+"transitions": PackedFloat32Array(1, 6.72717, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.17723, 0), Vector3(0, 1.17723, 0), Vector3(0, 2.00579, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_55k53"]
+_data = {
+&"RESET": SubResource("Animation_s04uj"),
+&"take_damage": SubResource("Animation_2valf")
+}
+
+[node name="3d_ui_take_damage" type="Node3D"]
+script = ExtResource("1_xpgyb")
+
+[node name="damage_lable" type="Label3D" parent="."]
+transform = Transform3D(0.294582, 0, -1.75674e-14, 0, 0.294582, 0, 1.75674e-14, 0, 0.294582, 0, 0, 0)
+visible = false
+billboard = 1
+modulate = Color(1, 0.425788, 0.357085, 1)
+outline_modulate = Color(0.045677, 0.0540728, 0, 1)
+text = "250"
+font_size = 267
+outline_size = 47
+
+[node name="damage_lable_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_55k53")
+}

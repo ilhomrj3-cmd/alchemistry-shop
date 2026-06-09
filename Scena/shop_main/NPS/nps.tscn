@@ -711,4 +711,5 @@ speed_scale = 0.5
 [node name="Sprite3D" type="Sprite3D" parent="emogi"]
 transform = Transform3D(2.59416, 0, 0, 0, 2.59416, 0, 0, 0, 2.59416, 0, 19.2158, 0)
 visible = false
+billboard = 1
 texture = ExtResource("5_ymd7t")

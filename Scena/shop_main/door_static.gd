@@ -3,7 +3,7 @@ extends StaticBody3D
 var door = false
 func _ready() -> void:
 	door_anims.play("close")
-func interaction(player):
+func interaction():
 	door = !door
 	if door:
 		door_anims.play("open")

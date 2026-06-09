@@ -25,7 +25,7 @@ func join_queue(npc) -> Vector3:
 		return queue_markers[index].global_position
 	return queue_markers.back().global_position
 
-func interaction(player):
+func interaction():
 	if current_customers.is_empty(): 
 		return
 	

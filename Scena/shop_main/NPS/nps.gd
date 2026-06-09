@@ -262,7 +262,6 @@ func _update_animation_parameters():
 			return
 	var is_moving = velocity.length() > 0.1
 	
-	# 2. Логика переключения
 	if is_moving:
 		playback.travel("walk_1")
 	else:
